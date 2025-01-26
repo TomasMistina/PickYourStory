@@ -1,0 +1,101 @@
+section {
+    width: 100%;
+    max-width: 26.25rem;
+    min-height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    margin: 2rem;
+    background-color: rgba(0,0,0,0.4);
+    align-self: center;
+    color: #5DEBD7;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+.scroll__container{
+    max-height: 31.25rem;
+    overflow-y: scroll;
+    align-items: center;
+}
+
+.hattheme_collection{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.all__part__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.load__more__button{
+    margin: 0 2rem ;
+    padding: 0.5rem ;
+    font-size: 1rem;
+    background-color: #1679AB;
+    color: #C5FF95;
+}
+
+.load__more__button__disabled{
+    margin: 0 2rem ;
+    padding: 0.5rem ;
+    font-size: 1rem;
+    background-color: #1679ab8e;
+    color: #c5ff9590;
+}
+
+.load__more__link{
+    margin: 2rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: #1679AB;
+    color: #C5FF95;
+}
+
+.signin__link, .signin__link:visited {
+    color: #5DEBD7;
+}
+
+button{
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: #e2fffcc9;
+}
+
+input{
+    margin: 0.25rem, 0;
+    padding: 0.25rem;
+    background-color: #e2fffcc9;
+}
+label{
+    font-size: 1.2rem;
+    margin: 0.5rem, 0;
+    padding: 0.5rem, 0;
+}
+
+.error__message{
+    background-color: lightcoral;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.home{
+    flex-direction: row;
+    align-self: center;
+}
+
+.span__pagination{
+    color: #e2fffcc9;
+}
