@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/PickYourStory/static/css/main.1d1615f4.css",
+    "main.js": "/PickYourStory/static/js/main.90638ee5.js",
+    "index.html": "/PickYourStory/index.html",
+    "main.1d1615f4.css.map": "/PickYourStory/static/css/main.1d1615f4.css.map",
+    "main.90638ee5.js.map": "/PickYourStory/static/js/main.90638ee5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d1615f4.css",
+    "static/js/main.90638ee5.js"
+  ]
+}
