@@ -9,6 +9,8 @@ const Navbar = () => {
         Rozprávkový koktejl
       </Link>
       <ul>
+        <CustomLink to="/mentored-groups">Moje skupiny - Mentor</CustomLink>
+        <CustomLink to="/participant-groups">Moje skupiny - Účastník</CustomLink>
         <CustomLink to="/my-drawn-words">Moje vytiahnuté zoznamy</CustomLink>
         <CustomLink to="/hat-themes/browse">Verejné klobúky</CustomLink>
         <CustomLink to="/hat-themes/my-hats">Moje klobúky</CustomLink>

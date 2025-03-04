@@ -8,7 +8,7 @@ const LOGIN_URL = "user/login";
 const LoginPage = () => {
   const userRef = useRef<HTMLInputElement>(null);
 
-  const { setCurrentUser } = useAuth();
+  const { setCurrentUser, setCurrentUserId } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +26,7 @@ const LoginPage = () => {
         password,
       });
       setCurrentUser(user);
+      setCurrentUserId(response.data.data);
       setUser("");
       setPassword("");
       navigate(from, { replace: true });

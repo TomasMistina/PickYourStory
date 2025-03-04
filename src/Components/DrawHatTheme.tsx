@@ -21,7 +21,7 @@ const DrawHatTheme = ({ title, setTitle, id }: Props) => {
   const [isHatEmpty, setIsHatEmpty] = useState<boolean>(false);
   const [hats, setHats] = useState<Item[][]>([[], [], []]);
   const [hatOwner, setHatOwner] = useState<string | null>(null);
-  const { currentUser } = useAuth();
+  const { currentUser, currentUserId } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -52,11 +52,12 @@ const DrawHatTheme = ({ title, setTitle, id }: Props) => {
 
   const handleSaveDrawnWords = async () => {
     const drawnItemsData = {
-      ownerName: currentUser,
-      originHatTitle: title,
+      ownerId: currentUserId,
+      originHatTheme: id,
       items: drawnItems,
     };
     try {
+      console.log(drawnItemsData.ownerId);
       const response = await axios.post("/drawn-words/save", drawnItemsData);
       if (response.status === 200) {
         console.log("Drawn words saved successfully");

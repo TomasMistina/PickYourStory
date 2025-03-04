@@ -7,7 +7,7 @@ import useAuth from "../auth/useAuth";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_$%]).{8,24}$/;
 //Got this email regex from here: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
 const EMAIL_REGEX = /^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$/;
 const REGISTER_URL = "user/register";
@@ -16,7 +16,7 @@ const RegisterPage = () => {
   const userRef = useRef<HTMLInputElement>(null);
 
   //User context setter here, this context is used in the whole application onwards
-  const { setCurrentUser } = useAuth();
+  const { setCurrentUser, setCurrentUserId } = useAuth();
 
   //This ensures that after login/registration I get to desired page
   const navigate = useNavigate();
@@ -88,6 +88,7 @@ const RegisterPage = () => {
       console.log(response.data);
       console.log(JSON.stringify(response));
       setCurrentUser(user);
+      setCurrentUserId(response.data._id);
       setUser("");
       setEmail("");
       setPassword("");
@@ -172,7 +173,7 @@ const RegisterPage = () => {
             8 až 24 znakov <br />
             Musí obsahovať veľké a malé písmená, číslice a špeciálne znaky
             <br />
-            Povolené špeciálne znaky sú: ! @ # $ %
+            Povolené špeciálne znaky sú: ! @ # $ % _
           </p>
         ) : (
           <></>

@@ -8,7 +8,7 @@ import Pagination from "../Components/ui/Pagination";
 import { useQuery } from "@tanstack/react-query";
 
 const MyDrawnWords = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, currentUserId } = useAuth();
   const [page, setPage] = useState(1);
 
   const {
@@ -19,7 +19,7 @@ const MyDrawnWords = () => {
   } = useQuery({
     queryKey: ["all_hatthemes", page, currentUser],
     queryFn: async () => {
-      const response = await axios.get(`/drawn-words/my-drawn-list?page=${page}&username=${currentUser}`);
+      const response = await axios.get(`/drawn-words/my-drawn-list?page=${page}&userId=${currentUserId}`);
       return await response.data;
     },
   });
@@ -37,10 +37,10 @@ const MyDrawnWords = () => {
     <div className="all__part__container">
       <div className="scroll__container">
         <div className="hattheme_collection">
-          {drawnWords.map((drawnWord : DrawnWordsPreview) => (
+          {drawnWords?.map((drawnWord : DrawnWordsPreview) => (
             <DrawnCard
               key={drawnWord._id}
-              title={drawnWord.originHatTitle}
+              title={"Zoznam vytiahnutý z "+drawnWord.originHatTheme?.title}
               owner={null}
               id={drawnWord._id}
             />

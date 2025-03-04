@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditHatTheme from "../Components/EditHatTheme";
 
 const CreateHat = () => {
-  const [title, setTitle] = useState<string>("New Hat");
+  const [title, setTitle] = useState<string>("Klobúk");
   return (
     <EditHatTheme
       title={title}

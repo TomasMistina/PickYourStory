@@ -9,7 +9,7 @@ export interface DrawnItem extends Item{
 
 export enum HatType {
   characters = "POSTAVY",
-  magical_items = "MAGICKÉ PREDMETY",
+  magical_items = "PREDMETY",
   phrases = "VÝROKY"
 }
 
@@ -23,5 +23,25 @@ export interface HatThemePreview{
 
 export interface DrawnWordsPreview{
   _id: string;
-  originHatTitle: string;
+  originHatTheme: OriginHatThemePreview;
+}
+
+export interface OriginHatThemePreview{
+  title: string;
+}
+
+export interface GroupPreview{
+  _id: string;
+  groupName: string;
+}
+
+export interface LessonPreview{
+  _id: string;
+  lessonName: string;
+}
+
+export interface LessonHatThemePreview{
+  _id: string;
+  hatTheme: OriginHatThemePreview;
+  description: string;
 }

@@ -19,7 +19,7 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
   const [editTitleItem, setEditTitleItem] = useState<string>(title);
   const [hats, setHats] = useState<Item[][]>([[], [], []]);
   const [hatOwner, setHatOwner] = useState<string | null>(null);
-  const { currentUser } = useAuth();
+  const { currentUser, currentUserId} = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,7 +47,7 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
     }
   }, [id]);
 
-  const handleDiscardDrawnWords = () => {
+  const handleDiscardChanges = () => {
     navigate(from, { replace: true });
   };
 
@@ -67,6 +67,7 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
       );
       setHats(extractedHats);
       setTitle(hatThemeData.title);
+      setEditTitleItem(hatThemeData.title);
       setHatOwner(hatThemeData.ownerName);
     } catch (error) {
       console.error("Error fetching hat theme:", error);
@@ -82,11 +83,11 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
       items: hat,
     }));
     const hatThemeData = {
-      ownerName: currentUser,
+      ownerId: currentUserId,
       title: title,
       hats: data,
     };
-    console.log("SAVE: "+ hatThemeData.ownerName+" "+hatThemeData.title+""+hatThemeData.hats);
+    console.log("SAVE: "+ hatThemeData.ownerId+" "+hatThemeData.title+""+hatThemeData.hats);
     try {
       const response = await axios.post("/hat-theme/save", hatThemeData);
       if (response.status === 200) {
@@ -105,11 +106,11 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
       items: hat,
     }));
     const hatThemeData = {
-      ownerName: currentUser,
-      title: title,
+      ownerId: currentUserId,
+      title: editTitleItem,
       hats: data,
     };
-    console.log("UPDATE: "+ hatThemeData.ownerName+" "+hatThemeData.title+""+id);
+    console.log("UPDATE: "+ hatThemeData.ownerId+" "+hatThemeData.title+""+id);
     try {
       const response = await axios.put(`/hat-theme/update/${id}`, hatThemeData);
       if (response.status === 200) {
@@ -131,7 +132,7 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
         <div className="edit__hat__theme">
           <button
             className="load__more__button"
-            onClick={handleDiscardDrawnWords}
+            onClick={handleDiscardChanges}
           >
             Zahodiť zmeny
           </button>

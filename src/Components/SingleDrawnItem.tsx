@@ -1,7 +1,6 @@
 import React from "react";
 import { DrawnItem } from "../model";
 import { AiFillDelete } from "react-icons/ai";
-import { MdDone } from "react-icons/md";
 import "./styles.css";
 
 type Props = {
@@ -17,13 +16,6 @@ const SingleDrawnItem = ({
   setDrawnItems,
   isDrawnNow,
 }: Props) => {
-  const handleDone = (id: string) => {
-    setDrawnItems(
-      drawnItems.map((item) =>
-        item.id === id ? { ...item, isDone: !item.isDone } : item
-      )
-    );
-  };
 
   const handleDelete = (id: string) => {
     setDrawnItems(drawnItems.filter((item) => item.id !== id));
@@ -45,11 +37,6 @@ const SingleDrawnItem = ({
       ) : (
         <span className="items__single--text">{drawnItem.value}</span>
       )}
-      <div>
-        <span className="icon" onClick={() => handleDone(drawnItem.id)}>
-          <MdDone />
-        </span>
-      </div>
     </form>
   );
 };

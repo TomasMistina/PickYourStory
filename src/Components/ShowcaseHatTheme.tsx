@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import "./../Pages/pages.css";
-import { HatThemeMode, HatType, Item } from "../model";
+import { HatType, Item } from "../model";
 import axios from "./../api/axios";
 import useAuth from "../auth/useAuth";
 import { Link } from "react-router-dom";
@@ -16,7 +16,7 @@ type Props = {
 const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
   const [hats, setHats] = useState<Item[][]>([[], [], []]);
   const [hatOwner, setHatOwner] = useState<string | null>(null);
-  const { currentUser } = useAuth();
+  const { currentUser, currentUserId } = useAuth();
 
   //Fetching data for Hat Theme
   useEffect(() => {
@@ -42,7 +42,9 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
       );
       setHats(extractedHats);
       setTitle(hatThemeData.title);
-      setHatOwner(hatThemeData.ownerName);
+      console.log(hatThemeData.owner);
+      console.log(currentUserId);
+      setHatOwner(hatThemeData.owner);
     } catch (error) {
       console.error("Error fetching hat theme:", error);
     }
@@ -51,7 +53,7 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
   return (
     <>
         <div className="hat__theme">
-            {currentUser === hatOwner ? (
+            {currentUserId === hatOwner ? (
             <Link
                 className="load__more__button"
                 to={`/hat-themes/my-hats/edit/${id}`}

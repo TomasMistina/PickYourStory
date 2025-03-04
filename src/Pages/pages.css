@@ -91,6 +91,14 @@ label{
     padding: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
+.success__message{
+    background-color: rgb(111, 255, 126);
+    color: rgb(28, 158, 35);
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
 .home{
     flex-direction: row;
     align-self: center;
