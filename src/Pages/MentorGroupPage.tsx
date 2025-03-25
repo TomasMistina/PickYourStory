@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import axios from "../api/axios";
 import "./pages.css";
+import "../Components/styles.css";
 import useAuth from "../auth/useAuth";
 import Pagination from "../Components/ui/Pagination";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -108,57 +109,64 @@ const MentorGroupPage = () => {
     }
   
     return (
-      <div className="all__part__container">
-        <LessonsListed Lessons={lessons}/>
-        <Pagination
-          currentPage={pagination.currentPage}
-          totalPages={pagination.totalPages}
-          onPageChange={handlePageChange}
-        />
-        <section>
-          {errMsg && <p className="error__message">{errMsg}</p>}
-          {successMsg && <p className="success__message">{successMsg}</p>}
-          <h1>Vytvorenie novej hodiny</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="lessonName">Meno hodiny:</label>
-            <input
-              className="input__field"
-              type="text"
-              id="lessonName"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setLessonName(e.target.value)}
-              value={lessonName}
-              required
-            />
-            <label htmlFor="lessonName">Klobúk: {selectedHatTheme ? selectedHatTheme.title : ""}</label>
-            <button onClick={() => 
-                navigate(`/mentored-groups/${id}/select-hat-theme`, { state: { lessonName } })
-              }>
-              {selectedHatTheme ? "Zmeniť Klobúk" : "Vybrať klobúk"}
-            </button>
+      <div className="all__part__container__alt2">
+        <div className="hat__theme__alt">
+          <CopyLabel accessCode={group.accessCode}/>
+          <span className="hat__title">{group?.groupName}</span>
+          <div>
+          <button onClick={handleParticipantListToggle}><IoPeople/> {group?.participants?.length}</button>
+            {participantListIsOpen && (
+              <div>
+                <h3 className="access__code__style">Účastníci</h3>
+                <ul className="access__code__style">
+                  {group.participants?.map((participant : UserPreview) => (
+                    <li key={participant._id}>{participant.username}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="all__part__container__alt">
+          <div className="all__part__container">
+            <LessonsListed Lessons={lessons}/>
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              onPageChange={handlePageChange}
+              />
+          </div>
+          <section>
+            {errMsg && <p className="error__message">{errMsg}</p>}
+            {successMsg && <p className="success__message">{successMsg}</p>}
+            <h1>Vytvorenie novej hodiny</h1>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="lessonName">Meno hodiny:</label>
+              <input
+                className="input__field"
+                type="text"
+                id="lessonName"
+                ref={userRef}
+                autoComplete="off"
+                onChange={(e) => setLessonName(e.target.value)}
+                value={lessonName}
+                required
+                />
+              <label htmlFor="lessonName">Klobúk: {selectedHatTheme ? selectedHatTheme.title : ""}</label>
+              <button onClick={() => 
+                  navigate(`/mentored-groups/${id}/select-hat-theme`, { state: { lessonName } })
+                }>
+                {selectedHatTheme ? "Zmeniť Klobúk" : "Vybrať klobúk"}
+              </button>
 
-            <button disabled={
-            !selectedHatTheme || !lessonName
-              ? true
-              : false
-            }
-            >Vytvoriť hodinu</button>
-          </form>
-        </section>
-        <CopyLabel accessCode={group.accessCode}/>
-        <div>
-        <button onClick={handleParticipantListToggle}><IoPeople/> {group?.participants?.length}</button>
-          {participantListIsOpen && (
-            <div>
-              <h3>Participants</h3>
-              <ul>
-                {group.participants?.map((participant : UserPreview) => (
-                  <li key={participant._id}>{participant.username}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+              <button disabled={
+                !selectedHatTheme || !lessonName
+                ? true
+                : false
+              }
+              >Vytvoriť hodinu</button>
+            </form>
+          </section>
         </div>
       </div>
     );

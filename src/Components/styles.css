@@ -203,6 +203,16 @@
     text-align: center;
 }
 
+.hat__theme__alt{
+    /*margin: 0.625rem 0rem;*/
+    min-height: 4.375rem;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .edit__hat__theme{
     flex-direction: row;
     /*margin: 0.625rem 0rem;*/
@@ -216,7 +226,9 @@
     flex-grow: 0;
     padding-bottom: 0;
 }
-
+.access__code__style{
+    color: white;
+}
 /*navigation*/
 
 .nav{
