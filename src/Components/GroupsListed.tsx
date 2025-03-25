@@ -1,5 +1,6 @@
 import Card from "./Card";
 import { GroupPreview} from "../model";
+import CustomLinkCard from "./CustomLinkCard";
 
 type GroupsProps = {
   Groups: GroupPreview[];
@@ -10,11 +11,11 @@ const GroupsListed = ({ Groups }: GroupsProps) => {
     <div className="scroll__container">
       <div className="hattheme_collection">
         {Groups?.map((Group: GroupPreview) => (
-          <Card
+          <CustomLinkCard
             key={Group._id}
             title={Group.groupName}
             owner={null}
-            id={Group._id}
+            customLink={`group/${Group._id}`}
           />
         ))}
       </div>

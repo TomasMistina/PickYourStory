@@ -7,7 +7,7 @@ import useAuth from "../auth/useAuth";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_$%]).{8,24}$/;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 //Got this email regex from here: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
 const EMAIL_REGEX = /^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$/;
 const REGISTER_URL = "user/register";
@@ -147,11 +147,7 @@ const RegisterPage = () => {
             <span className="mini__icon">
               <CiCircleInfo />
             </span>
-            Musí obsahovať @ <br />
-            Nemôže začínať ani končiť bodkou <br />
-            Nemôže mať bodku susediacu s @ <br />
-            Nemôže mať 2 bodky za sebou <br />
-            Musí obsahovať aspoň jednu bodku v časti za @.
+            Email musí byť v správnom formáte <br />
           </p>
         ) : (
           <></>
@@ -171,9 +167,7 @@ const RegisterPage = () => {
               <CiCircleInfo />
             </span>
             8 až 24 znakov <br />
-            Musí obsahovať veľké a malé písmená, číslice a špeciálne znaky
-            <br />
-            Povolené špeciálne znaky sú: ! @ # $ % _
+            Musí obsahovať veľké písmená, malé písmená a číslice
           </p>
         ) : (
           <></>

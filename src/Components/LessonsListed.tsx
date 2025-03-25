@@ -1,5 +1,6 @@
 import Card from "./Card";
 import { LessonPreview } from "../model";
+import CustomLinkCard from "./CustomLinkCard";
 
 type LessonsProps = {
   Lessons: LessonPreview[];
@@ -10,11 +11,11 @@ const LessonsListed = ({ Lessons }: LessonsProps) => {
     <div className="scroll__container">
       <div className="hattheme_collection">
         {Lessons?.map((Lesson: LessonPreview) => (
-          <Card
+          <CustomLinkCard
             key={Lesson._id}
             title={Lesson.lessonName}
             owner={null}
-            id={Lesson._id}
+            customLink={`./../../lesson/${Lesson._id}`}
           />
         ))}
       </div>

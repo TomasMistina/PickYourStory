@@ -19,3 +19,11 @@
     z-index: 1;
     text-align: center;
 }
+
+:root {
+    --main: #074173;
+    --primary_light: #62E4EE;
+    --primary_dark: #131F48;
+    --secondary_light: #40B3BA;
+    --secondary_dark: #F18701;
+  }

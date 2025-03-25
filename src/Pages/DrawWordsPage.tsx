@@ -4,12 +4,14 @@ import DrawHatTheme from "../Components/DrawHatTheme";
 
 const DrawWords = () => {
   const [title, setTitle] = useState<string>("Vybraný klobúk");
-  const { id } = useParams();
+  const { lessonId, id } = useParams();
+  
   return (
     <DrawHatTheme
       title={title}
       setTitle={setTitle}
       id={id}
+      lessonId={lessonId || null}
     />
   );
 };

@@ -4,7 +4,7 @@ import "./pages.css";
 import useAuth from "../auth/useAuth";
 import Pagination from "../Components/ui/Pagination";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LessonsListed from "../Components/LessonsListed";
 
 const ParticipantGroupPage = () => {
@@ -31,7 +31,8 @@ const ParticipantGroupPage = () => {
     if (isError) return <p>Error: {error.message}</p>;
     if (!data) return <p>No group found</p>;
 
-    const { data: lessons, pagination } = data;
+    const { group, lessons, pagination } = data;
+    console.log(data)
   
     const handlePageChange = (newPage: number) => {
       setPage(newPage);
@@ -39,6 +40,9 @@ const ParticipantGroupPage = () => {
   
     return (
       <div className="all__part__container">
+        <div className="hat__theme">
+          <span className="hat__title">{group?.groupName}</span>
+        </div>
         <LessonsListed Lessons={lessons}/>
         <Pagination
           currentPage={pagination.currentPage}

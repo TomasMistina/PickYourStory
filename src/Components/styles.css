@@ -198,14 +198,14 @@
 }
 
 .hat__theme{
-    margin: 0.625rem 0rem;
+    /*margin: 0.625rem 0rem;*/
     min-height: 4.375rem;
     text-align: center;
 }
 
 .edit__hat__theme{
     flex-direction: row;
-    margin: 0.625rem 0rem;
+    /*margin: 0.625rem 0rem;*/
     min-height: 4.375rem;
     display: flex;
     justify-content: center;

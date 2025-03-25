@@ -1,0 +1,63 @@
+  .homepage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+  
+  .sections {
+    display: flex;
+    align-items: center;
+  }
+
+  .section_home {
+    width: 50vh;
+    height: 50vh;
+    background-color: #3498db;
+    color: white;
+    font-size: 5vh;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .section_home:hover {
+    transform: scale(1.05);
+  }
+  
+  .section_home.active {
+    height: 55vh;
+  }
+  
+  .phrase {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .section_home.active .phrase {
+    top: 5vh;
+    font-size: 5vh;
+  }
+  
+  .description {
+    position: absolute;
+    top: 10vh;
+    font-size: 2.5vh;
+    text-align: center;
+    width: 80%;
+  }
+  
+  .arrow {
+    font-size: 6vh;
+    color: white;
+  }
+  

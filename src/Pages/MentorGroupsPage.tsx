@@ -3,13 +3,15 @@ import axios from "../api/axios";
 import "./pages.css";
 import useAuth from "../auth/useAuth";
 import Pagination from "../Components/ui/Pagination";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import GroupsListed from "../Components/GroupsListed";
 
 const MentorGroupsPage = () => {
     const { currentUserId } = useAuth();
     const [page, setPage] = useState(1);
     const userRef = useRef<HTMLInputElement>(null);
+
+    const queryClient = useQueryClient();
 
     const [groupName, setGroupName] = useState("");
     const [errMsg, setErrMsg] = useState("");
@@ -37,7 +39,7 @@ const MentorGroupsPage = () => {
         return response.data;
       },
       onSuccess: (data) => {
-        console.log(data.accessCode);
+        queryClient.invalidateQueries({ queryKey: ["mentor_groups", page, currentUserId] });
         setSuccessMsg(`Skupina ${data.data.groupName} bola úspešne vytvorená s kódom prístupu: ${data.data.accessCode}`);
         setErrMsg("");
         setGroupName("");
@@ -79,24 +81,24 @@ const MentorGroupsPage = () => {
           onPageChange={handlePageChange}
         />
         <section>
-              {errMsg && <p className="error__message">{errMsg}</p>}
-              {successMsg && <p className="success__message">{successMsg}</p>}
-              <h1>Vytvorenie novej skupiny</h1>
-              <form onSubmit={handleSubmit}>
-                <label htmlFor="groupName">Meno skupiny:</label>
-                <input
-                  className="input__field"
-                  type="text"
-                  id="groupName"
-                  ref={userRef}
-                  autoComplete="off"
-                  onChange={(e) => setGroupName(e.target.value)}
-                  value={groupName}
-                  required
-                />
-                <button>Vytvoriť skupinu</button>
-              </form>
-            </section>
+          {errMsg && <p className="error__message">{errMsg}</p>}
+          {successMsg && <p className="success__message">{successMsg}</p>}
+          <h1>Vytvorenie novej skupiny</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="groupName">Meno skupiny:</label>
+            <input
+              className="input__field"
+              type="text"
+              id="groupName"
+              ref={userRef}
+              autoComplete="off"
+              onChange={(e) => setGroupName(e.target.value)}
+              value={groupName}
+              required
+            />
+            <button>Vytvoriť skupinu</button>
+          </form>
+        </section>
       </div>
     );
   };

@@ -17,7 +17,7 @@ const MyHatThemes = () => {
     isLoading,
     error
   } = useQuery({
-    queryKey: ["all_hatthemes", page, currentUser],
+    queryKey: ["my_hatthemes", page, currentUser],
     queryFn: async () => {
       const response = await axios.get(`/hat-theme/my-hats?page=${page}&username=${currentUser}`);
       return await response.data;

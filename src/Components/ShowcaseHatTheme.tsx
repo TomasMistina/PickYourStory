@@ -67,7 +67,7 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
             <span className="hat__title">{title}</span>
             <Link
             className="load__more__button"
-            to={`/hat-themes/my-hats/draw/${id}`}
+            to={`./../draw/${id}`}
             >
             Vytiahnuť z klobúku
             </Link>

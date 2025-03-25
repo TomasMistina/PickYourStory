@@ -14,9 +14,10 @@ type Props = {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   id: string | undefined;
+  lessonId: string | null;
 };
 
-const DrawHatTheme = ({ title, setTitle, id }: Props) => {
+const DrawHatTheme = ({ title, setTitle, id, lessonId }: Props) => {
   const [drawnItems, setDrawnItems] = useState<DrawnItem[]>([]);
   const [isHatEmpty, setIsHatEmpty] = useState<boolean>(false);
   const [hats, setHats] = useState<Item[][]>([[], [], []]);
@@ -39,7 +40,11 @@ const DrawHatTheme = ({ title, setTitle, id }: Props) => {
 
 //#region DrawnItems Section
   const handleDiscardDrawnWords = () => {
-    navigate(from, { replace: true });
+    if(!lessonId){
+      navigate(`./../../${id}`, { replace: true });
+    }else{
+      navigate("./../..", { replace: true });
+    }
   };
 
   const updateDrawnItems = (drawnItem: Item) => {
@@ -55,13 +60,18 @@ const DrawHatTheme = ({ title, setTitle, id }: Props) => {
       ownerId: currentUserId,
       originHatTheme: id,
       items: drawnItems,
+      lessonId: lessonId
     };
     try {
       console.log(drawnItemsData.ownerId);
       const response = await axios.post("/drawn-words/save", drawnItemsData);
       if (response.status === 200) {
         console.log("Drawn words saved successfully");
-        navigate(from, { replace: true });
+        if(!lessonId){
+          navigate(`./../../${id}`, { replace: true });
+        }else{
+          navigate("./../..", { replace: true });
+        }
       } else {
         console.error("Failed to save hat theme");
       }

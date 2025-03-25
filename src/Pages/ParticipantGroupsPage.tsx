@@ -3,14 +3,15 @@ import axios from "../api/axios";
 import "./pages.css";
 import useAuth from "../auth/useAuth";
 import Pagination from "../Components/ui/Pagination";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import GroupsListed from "../Components/GroupsListed";
-import { access } from "fs";
 
 const ParticipantGroupsPage = () => {
     const { currentUserId } = useAuth();
     const [page, setPage] = useState(1);
     const userRef = useRef<HTMLInputElement>(null);
+    
+    const queryClient = useQueryClient();
     
     const [groupAccessCode, setGroupAccessCode] = useState("");
     const [errMsg, setErrMsg] = useState("");
@@ -38,6 +39,7 @@ const ParticipantGroupsPage = () => {
         return response.data;
       },
       onSuccess: (data) => {
+        queryClient.invalidateQueries({ queryKey: ["participant_groups", page, currentUserId] });
         setSuccessMsg(`Úspešne ste sa pripojili do ${data.groupName}`);
         setErrMsg("");
         setGroupAccessCode("");

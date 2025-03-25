@@ -21,6 +21,14 @@ export interface HatThemePreview{
   title: string;
 }
 
+export interface ExtendedHatThemePreview extends HatThemePreview{
+  hats: Hats[];
+}
+
+export interface Hats{
+  items: Item[];
+}
+
 export interface DrawnWordsPreview{
   _id: string;
   originHatTheme: OriginHatThemePreview;
@@ -44,4 +52,15 @@ export interface LessonHatThemePreview{
   _id: string;
   hatTheme: OriginHatThemePreview;
   description: string;
+}
+
+export interface UserPreview{
+  _id: string;
+  username: string;
+}
+
+export interface DrawnWordsList{
+  _id: string;
+  owner: UserPreview;
+  items: Item[];
 }
