@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import DrawHatTheme from "../Components/DrawHatTheme";
 
 const DrawWords = () => {
   const [title, setTitle] = useState<string>("Vybraný klobúk");
-  const { lessonId, id } = useParams();
+  const { lessonId, id} = useParams();
+  const location = useLocation();
+  const { drawnWordsId, drawnWordsList } = location.state || {};
   
   return (
     <DrawHatTheme
@@ -12,6 +14,8 @@ const DrawWords = () => {
       setTitle={setTitle}
       id={id}
       lessonId={lessonId || null}
+      drawnWordsId={drawnWordsId || null}
+      drawnWordsList={drawnWordsList || null}
     />
   );
 };

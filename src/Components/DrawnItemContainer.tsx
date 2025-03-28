@@ -1,11 +1,11 @@
 import React from "react";
-import { DrawnItem } from "../model";
+import { DrawnItem, Item } from "../model";
 import SingleDrawnItem from "./SingleDrawnItem";
 
 type Props = {
-  drawnItems: DrawnItem[];
+  drawnItems: Item[];
   isHatEmpty: boolean;
-  setDrawnItems: React.Dispatch<React.SetStateAction<DrawnItem[]>>;
+  setDrawnItems: React.Dispatch<React.SetStateAction<Item[]>>;
   isDrawnNow: boolean;
 };
 
@@ -20,7 +20,7 @@ const DrawnItemContainer = ({
 
   return (
     <div className="drawn__item__container">
-      <span className="hat__heading">Posledné vytiahnuté slovo</span>
+      <span className="hat__heading">Posledné vytiahnuté</span>
       {isHatEmpty ? (
         <span className="drawn__item__container__message">
           Klobúk, z ktorého ste ťahali je prázdny
@@ -35,7 +35,7 @@ const DrawnItemContainer = ({
         />
       ) : (
         <span className="drawn__item__container__message">
-          Slovo nebolo vytiahnuté
+          Zatiaľ nebolo nič vytiahnuté
         </span>
       )}
     </div>

@@ -51,7 +51,7 @@ const DrawHat = ({
     <div className="draw__hat">
       <span className="hat__heading">{hatType}</span>
         <button type="button" className="draw__button" onClick={handleDraw}>
-            Vytiahnuť slovo z klobúku
+            Vytiahnuť
         </button>
     </div>
   );

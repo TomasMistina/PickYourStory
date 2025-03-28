@@ -1,18 +1,18 @@
 import React from "react";
-import { DrawnItem } from "../model";
+import { DrawnItem, Item } from "../model";
 import SingleDrawnItem from "./SingleDrawnItem";
 import "./styles.css";
 
 type Props = {
-  drawnItems: DrawnItem[];
-  setDrawnItems: React.Dispatch<React.SetStateAction<DrawnItem[]>>;
+  drawnItems: Item[];
+  setDrawnItems: React.Dispatch<React.SetStateAction<Item[]>>;
   isDrawnNow: boolean;
 };
 
 const DrawnItemsList = ({ drawnItems, setDrawnItems, isDrawnNow }: Props) => {
   return (
     <div className="drawn__item__list__container">
-      <span className="hat__heading">Vytiahnuté slová</span>
+      <span className="hat__heading">Vytiahnuté papieriky</span>
       <div className={isDrawnNow ? "items" : "items__drawn"}>
         {drawnItems.map((item) => (
           <SingleDrawnItem

@@ -48,12 +48,6 @@ export interface LessonPreview{
   lessonName: string;
 }
 
-export interface LessonHatThemePreview{
-  _id: string;
-  hatTheme: OriginHatThemePreview;
-  description: string;
-}
-
 export interface UserPreview{
   _id: string;
   username: string;
@@ -63,4 +57,10 @@ export interface DrawnWordsList{
   _id: string;
   owner: UserPreview;
   items: Item[];
+}
+
+export interface HatThemeCompact{
+  hats: any[]; 
+  title: string; 
+  ownerName: string;
 }

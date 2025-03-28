@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { useParams } from "react-router-dom";
 import DrawnItemsList from "../Components/DrawnItemsList";
-import { DrawnItem } from "../model";
+import { DrawnItem, Item } from "../model";
 
 const DrawnWords = () => {
-  const [drawnItems, setDrawnItems] = useState<DrawnItem[]>([]);
+  const [drawnItems, setDrawnItems] = useState<Item[]>([]);
   const { id } = useParams();
   useEffect(() => {
     if (id) {
@@ -22,11 +22,10 @@ const DrawnWords = () => {
     try {
       const response = await axios.get(`/drawn-words/get-list/${id}`);
       const drawnWordsData = response.data;
-      const extractedItems: DrawnItem[] = drawnWordsData.items.map(
+      const extractedItems: Item[] = drawnWordsData.items.map(
         (item: any) => ({
           id: item._id,
           value: item.value,
-          isDone: item.isDone,
         })
       );
       setDrawnItems(extractedItems);

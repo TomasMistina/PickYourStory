@@ -1,12 +1,12 @@
 import React from "react";
-import { DrawnItem } from "../model";
+import { DrawnItem, Item } from "../model";
 import { AiFillDelete } from "react-icons/ai";
 import "./styles.css";
 
 type Props = {
-  drawnItem: DrawnItem;
-  drawnItems: DrawnItem[];
-  setDrawnItems: React.Dispatch<React.SetStateAction<DrawnItem[]>>;
+  drawnItem: Item;
+  drawnItems: Item[];
+  setDrawnItems: React.Dispatch<React.SetStateAction<Item[]>>;
   isDrawnNow: boolean;
 };
 
@@ -32,11 +32,7 @@ const SingleDrawnItem = ({
     </form>
   ) : (
     <form className="items__single__drawn">
-      {drawnItem.isDone ? (
-        <s className="items__single--text">{drawnItem.value}</s>
-      ) : (
         <span className="items__single--text">{drawnItem.value}</span>
-      )}
     </form>
   );
 };

@@ -76,12 +76,6 @@ const MentorLessonPage = () => {
         </div>
         <div className="all__part__container__alt">
         <div className="multisection__container">
-          <div className="multisection__title">{lessonHatTheme.title}</div>
-          <CompactWordDisplay title="Postavy" items={lessonHatTheme.hats[0].items}/>
-          <CompactWordDisplay title="Predmety" items={lessonHatTheme.hats[1].items}/>
-          <CompactWordDisplay title="Frázy" items={lessonHatTheme.hats[2].items}/>
-        </div>
-        <div className="multisection__container">
           <div className="multisection__title">Zoznamy vytiahnuté účastníkmi</div>
           {drawnWordsLists.drawnWordsLists?.map((drawnWordList : DrawnWordsList) => (
             <CompactWordDisplay

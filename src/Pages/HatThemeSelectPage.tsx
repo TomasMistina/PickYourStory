@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import SelectCard from "../Components/SelectCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CompactWordDisplay from "../Components/ui/CompactWordDisplay";
+import CompactHatThemeDisplay from "../Components/ui/CompactHatThemeDisplay";
 
 const HatThemeSelectPage = () => {
   const { currentUser } = useAuth();
@@ -46,7 +47,7 @@ const HatThemeSelectPage = () => {
   return (
     <div className="all__part__container_alt2">
       <div className="hat__theme">
-      <button className="load__more__button" onClick={() =>
+        <button className="load__more__button" onClick={() =>
             navigate( `./../../group/${id}`, { 
                 state: { lessonName}, 
                 replace: true
@@ -83,12 +84,7 @@ const HatThemeSelectPage = () => {
             />
         </div>
         {!currentSelectedHatTheme ? <></> : 
-        <div className="multisection__container">
-            <div className="multisection__title">{currentSelectedHatTheme.title}</div>
-            <CompactWordDisplay title="Postavy" items={currentSelectedHatTheme.hats[0].items}/>
-            <CompactWordDisplay title="Predmety" items={currentSelectedHatTheme.hats[1].items}/>
-            <CompactWordDisplay title="Frázy" items={currentSelectedHatTheme.hats[2].items}/>
-        </div>}
+        <CompactHatThemeDisplay lessonHatTheme={currentSelectedHatTheme}/>}
       </div>
       
     </div>
