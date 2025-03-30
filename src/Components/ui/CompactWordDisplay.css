@@ -1,8 +1,40 @@
   .section__container {
-    width: 500px;
-    max-width: 600px;
+    width: 450px;
+    max-width: 500px;
     min-height: 200px;
     max-height: 250px;
+    background-color: var(--primary_light);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--secondary_light);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /*pre nahlad klobukov vo vyberani klobuku na hodinu*/
+  .section__container__hat__preview {
+    width: 500px;
+    max-width: 600px;
+    min-height: 180px;
+    max-height: 190px;
+    background-color: var(--primary_light);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--secondary_light);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /*pre zobrazenie mojich vytiahnutych papierikov*/
+  .section__container__my__words__view {
+    width: 500px;
+    max-width: 600px;
+    min-height: 180px;
+    max-height: 500px;
     background-color: var(--primary_light);
     border-radius: 10px;
     padding: 15px;
@@ -44,6 +76,22 @@
   .multisection__container {
     background-color: var(--secondary_light);
     border-radius: 10px;
+    width: 95%;
+    height: 650px;
+  }
+
+  .section_list_container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-y: scroll;
+    height: 90%;
+    align-content: start;
+  }
+
+  .multisection__container__other {
+    background-color: var(--secondary_light);
+    border-radius: 10px;
   }
 
   .multisection__title {
@@ -53,3 +101,5 @@
     margin: 5px 0px;
     color: var(--main);
   }
+
+  

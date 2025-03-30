@@ -77,13 +77,16 @@ const MentorLessonPage = () => {
         <div className="all__part__container__alt">
         <div className="multisection__container">
           <div className="multisection__title">Zoznamy vytiahnuté účastníkmi</div>
-          {drawnWordsLists.drawnWordsLists?.map((drawnWordList : DrawnWordsList) => (
-            <CompactWordDisplay
-            title={drawnWordList.owner.username}
-            items={drawnWordList.items}
-            key={drawnWordList._id}
-            />
-          ))}
+          <div className="section_list_container">
+            {drawnWordsLists.drawnWordsLists?.map((drawnWordList : DrawnWordsList) => (
+              <CompactWordDisplay
+              title={drawnWordList.owner.username}
+              items={drawnWordList.items}
+              key={drawnWordList._id}
+              sectionStyle="section__container"
+              />
+            ))}
+          </div>
         </div>
       </div>
       </div>

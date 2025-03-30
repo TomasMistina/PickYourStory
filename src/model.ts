@@ -21,7 +21,16 @@ export interface HatThemePreview{
   title: string;
 }
 
+export interface CompactHatThemePreview extends HatThemePreview{
+  owner: UserPreview;
+}
+
 export interface ExtendedHatThemePreview extends HatThemePreview{
+  hats: Hats[];
+}
+
+export interface WholeHatTheme extends HatThemePreview{
+  owner: UserPreview;
   hats: Hats[];
 }
 

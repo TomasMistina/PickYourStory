@@ -2,7 +2,7 @@ import { useState } from "react";
 import Card from "../Components/Card";
 import axios from "../api/axios";
 import "./pages.css";
-import { HatThemePreview } from "../model";
+import { CompactHatThemePreview, HatThemePreview } from "../model";
 import useAuth from "../auth/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "../Components/ui/Pagination";
@@ -33,15 +33,16 @@ const AllHatThemes = () => {
     setPage(newPage);
   };
 
+  console.log(data)
   return (
     <div className="all__part__container">
       <div className="scroll__container">
         <div className="hattheme_collection">
-          {allHatThemes?.map((hatTheme : HatThemePreview) => (
+          {allHatThemes?.map((hatTheme : CompactHatThemePreview) => (
             <Card
               key={hatTheme._id}
               title={hatTheme.title}
-              owner={null}
+              owner={hatTheme.owner.username}
               id={hatTheme._id}
             />
           ))}

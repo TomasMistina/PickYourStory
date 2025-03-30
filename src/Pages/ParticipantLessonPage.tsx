@@ -85,12 +85,13 @@ const ParticipantLessonPage = () => {
           (drawnWordsList.drawnWordsList!=null)
           &&
           <div className="all__part__container__alt">
-            <div className="multisection__container">
+            <div className="multisection__container__other">
             <div className="multisection__title">Môj vytiahnutý zoznam</div>
               <CompactWordDisplay
                   title= /* {drawnWordsList.drawnWordList.owner.username} */ ""
                   items={drawnWordsList.drawnWordsList?.items}
                   key={drawnWordsList.drawnWordsList?._id}
+                  sectionStyle="section__container__my__words__view"
               />
             </div>
           </div>

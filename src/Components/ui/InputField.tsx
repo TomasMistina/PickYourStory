@@ -14,11 +14,11 @@ const InputField = ({ item, setItem, handleAdd }: Props) => {
         type="input"
         value={item}
         onChange={(e) => setItem(e.target.value)}
-        placeholder="Enter new Item"
+        placeholder="Pridať novú položku"
         className="input__box"
       />
       <button className="input__submit" type="submit">
-        Add
+        +
       </button>
     </form>
   );

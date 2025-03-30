@@ -6,11 +6,12 @@ import CompactWordItem from "./CompactWordItem";
 type Props = {
   title: string;
   items: Item[];
+  sectionStyle: string;
 };
 
-const CompactWordDisplay = ({title, items}: Props) => {
+const CompactWordDisplay = ({title, items, sectionStyle}: Props) => {
   return (
-    <section className="section__container">
+    <section className={sectionStyle}>
         <div className="section__title">{title}</div>
         <div className="tag__style__list">
             {items.map((item) => (

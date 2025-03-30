@@ -93,11 +93,13 @@
     border-radius: 0.625rem;
     right: 0rem;
     border: none;
-    font-size: 0.625rem;
+    font-size: 1.75rem;
     background-color: aqua;
     transition: 0.2s;
     color: white;
     box-shadow: 0 0 0.5rem black;
+    align-items: center;
+    padding: 0;
 }
 .input__submit:hover{
     background-color: rgb(8, 179, 179);

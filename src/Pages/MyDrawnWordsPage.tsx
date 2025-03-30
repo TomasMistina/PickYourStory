@@ -17,7 +17,7 @@ const MyDrawnWords = () => {
     isLoading,
     error
   } = useQuery({
-    queryKey: ["all_hatthemes", page, currentUser],
+    queryKey: ["my_drawn_hatthemes", page, currentUser],
     queryFn: async () => {
       const response = await axios.get(`/drawn-words/my-drawn-list?page=${page}&userId=${currentUserId}`);
       return await response.data;

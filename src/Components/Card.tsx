@@ -13,7 +13,7 @@ const Card = ({ title, owner, id }: Props) => {
   return (
     <Link to={value} className="single__card">
       <h3>{title}</h3>
-      {owner ? <p>Owner: {owner}</p> : <></>}
+      {owner ? <p>Vytvoril: {owner}</p> : <></>}
     </Link>
   );
 };

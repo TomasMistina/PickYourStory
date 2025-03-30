@@ -33,26 +33,11 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
 
   const queryClient = useQueryClient();
 
-  const updateDrawnItems = (drawnItem: Item) => {
-    const id = uuidv4();
-    setDrawnItems([
-      ...drawnItems,
-      { id: id, value: drawnItem.value},
-    ]);
-  };
-
-  const initiatePreviousDrawnItems = (previousDrawnItems: Item[]) => {
-    setDrawnItems(
-      previousDrawnItems
-    );
-  };
-
-  //Fetch Hat Theme Data (Using React Query)
   const { data: hatThemeData, isLoading, isError } = useQuery({
     queryKey: ["hatTheme", id],
     queryFn: async () => {
       if (!id) return null;
-      const response = await axios.get(`/hat-theme/get-hat/${id}`);
+      const response = await axios.get(`/hat-theme/get-hat/${id}?userId=${currentUserId}`);
       return response.data;
     },
     enabled: !!id,
@@ -73,7 +58,6 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
     }
   }, [hatThemeData]);
 
-  // Save Drawn Words (Using React Query Mutation)
   const saveDrawnWordsMutation = useMutation({
     mutationFn: async () => {
       const drawnItemsData = {
@@ -87,8 +71,8 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
     },
     onSuccess: () => {
       console.log("Drawn words saved successfully");
-      navigate(lessonId ? "./../.." : `./../../${id}`, { replace: true });
       queryClient.invalidateQueries({ queryKey: ["hat-theme", id] });
+      navigate(lessonId ? "./../.." : `./../../${id}`, { replace: true });
     },
     onError: (error) => {
       console.error("Failed to save drawn words:", error);
@@ -116,6 +100,20 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
 
   const updateHats = (updatedHats: Item[][]) => {
     setHats(updatedHats);
+  };
+
+  const updateDrawnItems = (drawnItem: Item) => {
+    const id = uuidv4();
+    setDrawnItems([
+      ...drawnItems,
+      { id: id, value: drawnItem.value},
+    ]);
+  };
+
+  const initiatePreviousDrawnItems = (previousDrawnItems: Item[]) => {
+    setDrawnItems(
+      previousDrawnItems
+    );
   };
 
   if (isLoading) return <p>Loading...</p>;

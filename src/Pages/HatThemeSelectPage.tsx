@@ -7,7 +7,6 @@ import Pagination from "../Components/ui/Pagination";
 import { useQuery } from "@tanstack/react-query";
 import SelectCard from "../Components/SelectCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import CompactWordDisplay from "../Components/ui/CompactWordDisplay";
 import CompactHatThemeDisplay from "../Components/ui/CompactHatThemeDisplay";
 
 const HatThemeSelectPage = () => {
@@ -30,7 +29,7 @@ const HatThemeSelectPage = () => {
   } = useQuery({
     queryKey: ["my_select_hatthemes", page, currentUser],
     queryFn: async () => {
-      const response = await axios.get(`/hat-theme/my-hats?page=${page}&username=${currentUser}`);
+      const response = await axios.get(`/hat-theme/select-from-my-hats?page=${page}&username=${currentUser}`);
       return await response.data;
     },
   });

@@ -52,22 +52,16 @@ const RegisterPage = () => {
 
   useEffect(() => {
     const result = USER_REGEX.test(user);
-    console.log(result);
-    console.log(user);
     setValidName(result);
   }, [user]);
 
   useEffect(() => {
     const result = EMAIL_REGEX.test(email);
-    console.log(result);
-    console.log(email);
     setValidEmail(result);
   }, [email]);
 
   useEffect(() => {
     const result = PASSWORD_REGEX.test(password);
-    console.log(result);
-    console.log(password);
     setValidPassword(result);
     const match = password === repeatPassword;
     setValidRepeatPassword(match);
@@ -85,10 +79,8 @@ const RegisterPage = () => {
         email,
         password,
       });
-      console.log(response.data);
-      console.log(JSON.stringify(response));
       setCurrentUser(user);
-      setCurrentUserId(response.data._id);
+      setCurrentUserId(response.data.data._id);
       setUser("");
       setEmail("");
       setPassword("");
@@ -198,7 +190,7 @@ const RegisterPage = () => {
               : false
           }
         >
-          Sign Up
+          Zaregistrovať sa
         </button>
       </form>
       <p>
