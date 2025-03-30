@@ -5,6 +5,7 @@ import App from "./App";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./auth/AuthProvider";
+import { MobileProvider } from "./mobile/MobileContext";
 
 const basename = "/PickYourStory";
 const queryClient = new QueryClient();
@@ -16,9 +17,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter basename={basename}>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <MobileProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </MobileProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

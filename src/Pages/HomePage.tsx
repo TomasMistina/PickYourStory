@@ -1,16 +1,18 @@
 import { useState } from "react";
 import "./HomePage.css";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 const HomePage = () => {
   const [selected, setSelected] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   const handleClick = (index: number) => {
     setSelected(selected === index ? null : index);
   };
 
   return (
-    <div className="homepage-container">
-      <div className="sections">
+    <div className={isMobile ? "mobile__homepage-container" : "homepage-container"}>
+      <div className={isMobile ? "mobile__sections" : "sections"}>
         {/* Section 1 */}
         <section className={`section_home ${selected === 1 ? "active" : ""}`} onClick={() => handleClick(1)}>
           <div className="phrase">Vyber si klobúk</div>

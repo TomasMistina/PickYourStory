@@ -21,12 +21,14 @@ import MentorGroupPage from "./Pages/MentorGroupPage";
 import MentorLessonPage from "./Pages/MentorLessonPage";
 import ParticipantLessonPage from "./Pages/ParticipantLessonPage";
 import HatThemeSelectPage from "./Pages/HatThemeSelectPage";
+import { useIsMobile } from "./mobile/useIsMobile";
 
 function App() {
+  const isMobile = useIsMobile();
   return (
     <div className="App">
       <Navbar />
-      <div className="page__container">
+      <div className={isMobile ? "mobile__page__container" : "page__container"}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />

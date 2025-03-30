@@ -11,6 +11,17 @@
     font-family: "Patrick Hand", cursive;
 }
 
+.mobile__App{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*background-color: rgb(91, 143, 255);*/  
+    background-color: #074173; 
+    font-family: "Patrick Hand", cursive;
+}
+
 .heading{
     text-transform: uppercase;
     font-size: 2.5rem;

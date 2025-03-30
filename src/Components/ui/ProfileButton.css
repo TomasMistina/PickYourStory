@@ -40,6 +40,16 @@
     text-align: center;
     color: var(--primary_light);
   }
+
+  .mobile__modal-content {
+    background-color: var(--primary_dark);
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: var(--primary_light);
+  }
   
   /* Close Button */
   .close {
