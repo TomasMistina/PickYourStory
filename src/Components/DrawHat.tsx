@@ -1,6 +1,7 @@
 import React from "react";
 import { HatType, Item } from "../model";
 import "./styles.css";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 type Props = {
   hatType: HatType;
@@ -17,6 +18,7 @@ const DrawHat = ({
   updateHats,
   hats,
 }: Props) => {
+  const isMobile = useIsMobile();
 
   let hatIndex = -1;
   switch (hatType) {
@@ -48,8 +50,8 @@ const DrawHat = ({
     }
   };
   return (
-    <div className="draw__hat">
-      <span className="hat__heading">{hatType}</span>
+    <div className={isMobile ? "mobile__draw__hat" : "draw__hat" }>
+      <span className={isMobile ? "mobile__hat__heading" : "hat__heading" }>{hatType}</span>
         <button type="button" className="draw__button" onClick={handleDraw}>
             Vytiahnuť
         </button>

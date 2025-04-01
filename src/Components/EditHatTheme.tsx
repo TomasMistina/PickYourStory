@@ -5,8 +5,10 @@ import { AiFillEdit } from "react-icons/ai";
 import { HatType, Item } from "../model";
 import axios from "./../api/axios";
 import useAuth from "../auth/useAuth";
-import { useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import EditHat from "./EditHat";
+import { useIsMobile } from "../mobile/useIsMobile";
+import MobileTabLayout from "./ui/MobileTabLayout";
 
 type Props = {
   title: string;
@@ -20,6 +22,8 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
   const [hats, setHats] = useState<Item[][]>([[], [], []]);
   const [hatOwner, setHatOwner] = useState<string | null>(null);
   const { currentUser, currentUserId} = useAuth();
+  const isMobile = useIsMobile();
+  const [selected, setSelected] = useState<number>(1);
 
   const [errMsg, setErrMsg] = useState("");
 
@@ -146,67 +150,142 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
   return (
     <>
       {errMsg && <p className="error__message">{errMsg}</p>}
-      <div className="edit__hat__theme">
-        <button
-          className="load__more__button"
-          onClick={handleDiscardChanges}
-        >
-          Zahodiť zmeny
-        </button>
-        <form className="edit_hat_form" onSubmit={(e) => handleEdit(e)}>
-          {editTitle ? (
-            <input
-              ref={inputRef}
-              value={editTitleItem}
-              onChange={(e) => setEditTitleItem(e.target.value)}
-              placeholder="Názov klobúku"
-              className="hat__title_edit"
-            />
-          ) : (
-            <span className="hat__title">{title}</span>
-          )}
-          <span
-            className="icon"
-            onClick={() => {
-              if (!editTitle) {
-                setEditTitle(!editTitle);
-              } else {
-                setTitle(editTitleItem);
-                setEditTitle(false);
-              }
-            }}
-          >
-            <AiFillEdit />
-          </span>
-        </form>
-        <button
-          className="load__more__button"
-          onClick={ () => { 
-            const isNotEmpty = handleEmptyCheck();
-            if (isNotEmpty){
-              {id ? handleUpdate() : handleSave()}}}
-            }
-        >
-          Uložiť zmeny
-        </button>
-      </div>
-      <div className="container">
-        <EditHat
-          hatType={HatType.characters}
-          updateHats={updateHats}
-          hats={hats}
-        />
-        <EditHat
-          hatType={HatType.magical_items}
-          updateHats={updateHats}
-          hats={hats}
-        />
-        <EditHat
-          hatType={HatType.phrases}
-          updateHats={updateHats}
-          hats={hats}
-        />
-      </div>
+      {isMobile 
+        ?
+        <>
+          <div className="mobile__hat__theme">
+            <form className="mobile__edit__hat__form" onSubmit={(e) => handleEdit(e)}>
+              {editTitle ? (
+                <input
+                  ref={inputRef}
+                  value={editTitleItem}
+                  onChange={(e) => setEditTitleItem(e.target.value)}
+                  placeholder="Názov klobúku"
+                  className="mobile__hat__title__edit"
+                />
+              ) : (
+                <span className="mobile__hat__title">{title}</span>
+              )}
+              <span
+                className="mobile__icon"
+                onClick={() => {
+                  if (!editTitle) {
+                    setEditTitle(!editTitle);
+                  } else {
+                    setTitle(editTitleItem);
+                    setEditTitle(false);
+                  }
+                }}
+              >
+                <AiFillEdit />
+              </span>
+            </form>
+            <div className="mobile__action__buttons">
+              <button
+                className="mobile__action__button"
+                onClick={handleDiscardChanges}
+              >
+                Zahodiť zmeny
+              </button>
+              <button
+                className="mobile__action__button"
+                onClick={ () => { 
+                  const isNotEmpty = handleEmptyCheck();
+                  if (isNotEmpty){
+                    {id ? handleUpdate() : handleSave()}}}
+                  }
+              >
+                Uložiť zmeny
+              </button>
+            </div>
+          </div>
+          <div className="mobile__container">
+            <MobileTabLayout selected={selected} setSelected={setSelected}/>
+            <EditHat
+              hatType={HatType.characters}
+              updateHats={updateHats}
+              hats={hats}
+              isShown={selected===1}
+              />
+            <EditHat
+              hatType={HatType.magical_items}
+              updateHats={updateHats}
+              hats={hats}
+              isShown={selected===2}
+              />
+            <EditHat
+              hatType={HatType.phrases}
+              updateHats={updateHats}
+              hats={hats}
+              isShown={selected===3}
+              />
+          </div>  
+        </>
+        :
+        <>
+          <div className="edit__hat__theme">
+            <button
+              className="load__more__button"
+              onClick={handleDiscardChanges}
+            >
+              Zahodiť zmeny
+            </button>
+            <form className="edit_hat_form" onSubmit={(e) => handleEdit(e)}>
+              {editTitle ? (
+                <input
+                  ref={inputRef}
+                  value={editTitleItem}
+                  onChange={(e) => setEditTitleItem(e.target.value)}
+                  placeholder="Názov klobúku"
+                  className="hat__title__edit"
+                />
+              ) : (
+                <span className="hat__title">{title}</span>
+              )}
+              <span
+                className="icon"
+                onClick={() => {
+                  if (!editTitle) {
+                    setEditTitle(!editTitle);
+                  } else {
+                    setTitle(editTitleItem);
+                    setEditTitle(false);
+                  }
+                }}
+              >
+                <AiFillEdit />
+              </span>
+            </form>
+            <button
+              className="load__more__button"
+              onClick={ () => { 
+                const isNotEmpty = handleEmptyCheck();
+                if (isNotEmpty){
+                  {id ? handleUpdate() : handleSave()}}}
+                }
+            >
+              Uložiť zmeny
+            </button>
+          </div>
+          <div className="container">
+            <EditHat
+              hatType={HatType.characters}
+              updateHats={updateHats}
+              hats={hats}
+              />
+            <EditHat
+              hatType={HatType.magical_items}
+              updateHats={updateHats}
+              hats={hats}
+              />
+            <EditHat
+              hatType={HatType.phrases}
+              updateHats={updateHats}
+              hats={hats}
+              />
+          </div>
+        </>
+      }
     </>
   );
 };

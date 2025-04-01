@@ -6,10 +6,12 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import CompactWordDisplay from "../Components/ui/CompactWordDisplay";
 import { DrawnWordsList } from "../model";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 const MentorLessonPage = () => {
     const { currentUserId } = useAuth();
     const { id } = useParams();
+    const isMobile = useIsMobile();
 
     const queryClient = useQueryClient();
     
@@ -65,30 +67,49 @@ const MentorLessonPage = () => {
 
     return (
       <div className="all__part__container__alt2">
-        <div className="hat__theme">
-          <span className="load__more__button">
-            Klobúk je {lesson?.isOpen ? "otvorený" : "uzavretý"}
-          </span>
-          <span className="hat__title">{lesson?.lessonName}</span>
-          <button className="load__more__button" onClick={() => toggleLock.mutate()}>
-            {lesson?.isOpen ? "Uzavrieť klobúk" : "Otvoriť klobúk"}
-          </button>
-        </div>
+
+        {isMobile 
+          ? 
+          <div className="mobile__hat__theme">
+            <span className="mobile__hat__title__alt">{lesson?.lessonName}</span>
+            <div className="mobile__action__buttons">
+              <span className="mobile__action__button">
+                Klobúk je {lesson?.isOpen ? "otvorený" : "uzavretý"}
+              </span>
+              <button className="mobile__action__button" onClick={() => toggleLock.mutate()}>
+                {lesson?.isOpen ? "Uzavrieť klobúk" : "Otvoriť klobúk"}
+              </button>
+            </div>
+          </div>
+          : 
+          <div className="hat__theme">
+            <span className="load__more__button">
+              Klobúk je {lesson?.isOpen ? "otvorený" : "uzavretý"}
+            </span>
+            <span className="hat__title">{lesson?.lessonName}</span>
+            <button className="load__more__button" onClick={() => toggleLock.mutate()}>
+              {lesson?.isOpen ? "Uzavrieť klobúk" : "Otvoriť klobúk"}
+            </button>
+          </div>
+        }
+
         <div className="all__part__container__alt">
-        <div className="multisection__container">
-          <div className="multisection__title">Zoznamy vytiahnuté účastníkmi</div>
-          <div className="section_list_container">
-            {drawnWordsLists.drawnWordsLists?.map((drawnWordList : DrawnWordsList) => (
-              <CompactWordDisplay
-              title={drawnWordList.owner.username}
-              items={drawnWordList.items}
-              key={drawnWordList._id}
-              sectionStyle="section__container"
-              />
-            ))}
+          <div className="multisection__container">
+            <div className={isMobile ? "mobile__multisection__title" : "multisection__title"}>
+              Zoznamy vytiahnuté účastníkmi
+            </div>
+            <div className="section_list_container">
+              {drawnWordsLists.drawnWordsLists?.map((drawnWordList : DrawnWordsList) => (
+                <CompactWordDisplay
+                title={drawnWordList.owner.username}
+                items={drawnWordList.items}
+                key={drawnWordList._id}
+                sectionStyle="section__container"
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </div>
     );
   };

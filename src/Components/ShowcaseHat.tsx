@@ -1,3 +1,4 @@
+import { useIsMobile } from "../mobile/useIsMobile";
 import { HatType, Item } from "../model";
 import ShowcaseItemList from "./ShowcaseItemList";
 import "./styles.css";
@@ -5,12 +6,15 @@ import "./styles.css";
 type Props = {
   hatType: HatType;
   hats: Item[][];
+  isShown?: boolean;
 };
 
 const ShowcaseHat = ({
   hatType,
   hats,
+  isShown
 }: Props) => {
+  const isMobile = useIsMobile();
 
   let hatIndex = -1;
   switch (hatType) {
@@ -28,12 +32,31 @@ const ShowcaseHat = ({
   }
 
   return (
-    <div className="hat">
-      <span className="hat__heading">{hatType}</span>
-        <ShowcaseItemList
-            items={hats[hatIndex]}
-        />
-    </div>
+    <>
+    {isMobile 
+      ? 
+      <>
+      {isShown
+        ? 
+        <div className={"mobile__hat"+hatIndex}>
+          <ShowcaseItemList
+              items={hats[hatIndex]}
+          />
+        </div> 
+        : 
+        <>
+        </>
+      }
+      </>
+      :
+      <div className="hat">
+        <span className="hat__heading">{hatType}</span>
+          <ShowcaseItemList
+              items={hats[hatIndex]}
+          />
+      </div>
+    }
+  </>
   );
 };
 

@@ -23,12 +23,12 @@ const Navbar = () => {
           ? 
           (
             <ul id="navLinks">
-              <li onClick={() => setIsNavModalOpen(false)}><CustomLink to="/mentored-groups">Moje skupiny - Mentor</CustomLink></li>
-              <li onClick={() => setIsNavModalOpen(false)}><CustomLink to="/participant-groups">Moje skupiny - Účastník</CustomLink></li>
-              <li onClick={() => setIsNavModalOpen(false)}><CustomLink to="/my-drawn-words">Moje vytiahnuté zoznamy</CustomLink></li>
-              <li onClick={() => setIsNavModalOpen(false)}><CustomLink to="/hat-themes/browse">Verejné klobúky</CustomLink></li>
-              <li onClick={() => setIsNavModalOpen(false)}><CustomLink to="/hat-themes/my-hats">Moje klobúky</CustomLink></li>
-              <li onClick={() => setIsNavModalOpen(false)}><CustomLink to="/create-hat">Vytvoriť klobúk</CustomLink></li>
+              <CustomLink to="/mentored-groups" setIsNavModalOpen={setIsNavModalOpen}>Moje skupiny - Mentor</CustomLink>
+              <CustomLink to="/participant-groups" setIsNavModalOpen={setIsNavModalOpen}>Moje skupiny - Účastník</CustomLink>
+              <CustomLink to="/my-drawn-words" setIsNavModalOpen={setIsNavModalOpen}>Moje vytiahnuté zoznamy</CustomLink>
+              <CustomLink to="/hat-themes/browse" setIsNavModalOpen={setIsNavModalOpen}>Verejné klobúky</CustomLink>
+              <CustomLink to="/hat-themes/my-hats" setIsNavModalOpen={setIsNavModalOpen}>Moje klobúky</CustomLink>
+              <CustomLink to="/create-hat" setIsNavModalOpen={setIsNavModalOpen}>Vytvoriť klobúk</CustomLink>
             </ul>
           ) 
           : 
@@ -40,7 +40,7 @@ const Navbar = () => {
     return (
       <nav className="nav">
         <Link to="/" className="site__title">
-          Rozprávkový koktejl
+          PickYourStory
         </Link>
           <ul>
             <CustomLink to="/mentored-groups">Moje skupiny - Mentor</CustomLink>
@@ -61,13 +61,14 @@ export default Navbar;
 type Props = {
   to: string;
   children: React.ReactNode;
+  setIsNavModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
 };
 
-function CustomLink({ to, children, ...props }: Props) {
+function CustomLink({ to, children, setIsNavModalOpen, ...props }: Props) {
   const resolvedPath = useResolvedPath(to);
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
   return (
-    <li className={isActive ? "active" : ""}>
+    <li className={isActive ? "active" : ""} onClick={() => setIsNavModalOpen? setIsNavModalOpen(false) : <></>}>
       <Link to={to} {...props}>
         {children}
       </Link>

@@ -7,6 +7,8 @@ import useAuth from "../auth/useAuth";
 import { Link } from "react-router-dom";
 import ShowcaseHat from "./ShowcaseHat";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useIsMobile } from "../mobile/useIsMobile";
+import MobileTabLayout from "./ui/MobileTabLayout";
 
 type Props = {
   title: string;
@@ -18,6 +20,8 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
   const [hats, setHats] = useState<Item[][]>([[], [], []]);
   const [hatOwner, setHatOwner] = useState<string | null>(null);
   const { currentUser, currentUserId } = useAuth();
+  const isMobile = useIsMobile();
+  const [selected, setSelected] = useState<number>(1);
 
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
@@ -76,40 +80,90 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
       {isLoading && <p>Načítavam...</p>}
       {errMsg && <p className="error__message">{errMsg}</p>}
       {successMsg && <p className="success__message">{successMsg}</p>}
-      <div className="hat__theme">
-          {currentUserId === hatOwner ? (
-          <Link
+      {isMobile 
+        ?
+        <>
+          <div className="mobile__hat__theme">
+            <span className="mobile__hat__title">{title}</span>
+            <div className="mobile__action__buttons">
+              {currentUserId === hatOwner ? (
+                <Link
+                className="mobile__action__button"
+                to={`/hat-themes/my-hats/edit/${id}`}
+                >
+                Upraviť klobúk
+              </Link>
+              ) : (
+                <button className="mobile__action__button" 
+                  onClick={() => copyHatThemeMutation.mutate()}>
+                  Kopírovať klobúk
+                </button>
+              )}
+              <Link
+              className="mobile__action__button"
+              to={`./../draw/${id}`}
+              >
+                Vytiahnuť z klobúku
+              </Link>
+            </div>
+          </div>
+          <div className="mobile__container">
+            <MobileTabLayout selected={selected} setSelected={setSelected}/>
+            <ShowcaseHat
+              hatType={HatType.characters}
+              hats={hats}
+              isShown={selected===1}
+              />
+            <ShowcaseHat
+              hatType={HatType.magical_items}
+              hats={hats}
+              isShown={selected===2}
+              />
+            <ShowcaseHat
+              hatType={HatType.phrases}
+              hats={hats}
+              isShown={selected===3}
+              />
+          </div>  
+        </>
+        : 
+        <>
+          <div className="hat__theme">
+            {currentUserId === hatOwner ? (
+              <Link
               className="load__more__button"
               to={`/hat-themes/my-hats/edit/${id}`}
-          >
-            Upraviť klobúk
-          </Link>
-          ) : (
-          <button className="load__more__button" onClick={() => copyHatThemeMutation.mutate()}>Kopírovať klobúk</button>
-          )}
+              >
+              Upraviť klobúk
+            </Link>
+            ) : (
+              <button className="load__more__button" onClick={() => copyHatThemeMutation.mutate()}>Kopírovať klobúk</button>
+            )}
 
-          <span className="hat__title">{title}</span>
-          <Link
-          className="load__more__button"
-          to={`./../draw/${id}`}
-          >
-            Vytiahnuť z klobúku
-          </Link>
-      </div>
-      <div className="container">
-          <ShowcaseHat
-          hatType={HatType.characters}
-          hats={hats}
-          />
-          <ShowcaseHat
-          hatType={HatType.magical_items}
-          hats={hats}
-          />
-          <ShowcaseHat
-          hatType={HatType.phrases}
-          hats={hats}
-          />
-      </div>
+            <span className="hat__title">{title}</span>
+            <Link
+            className="load__more__button"
+            to={`./../draw/${id}`}
+            >
+              Vytiahnuť z klobúku
+            </Link>
+          </div>
+          <div className="container">
+            <ShowcaseHat
+              hatType={HatType.characters}
+              hats={hats}
+              />
+            <ShowcaseHat
+              hatType={HatType.magical_items}
+              hats={hats}
+              />
+            <ShowcaseHat
+              hatType={HatType.phrases}
+              hats={hats}
+              />
+          </div>
+        </>
+      }  
     </>
   );
 };

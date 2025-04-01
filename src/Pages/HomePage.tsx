@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./HomePage.css";
 import { useIsMobile } from "../mobile/useIsMobile";
+import { FaArrowDown } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 const HomePage = () => {
   const [selected, setSelected] = useState<number | null>(null);
@@ -24,7 +26,7 @@ const HomePage = () => {
             </p>}
         </section>
 
-        <div className="arrow">{">"}</div>
+        <div className="arrow">{isMobile ? <FaArrowDown /> : <FaArrowRight />}</div>
 
         {/* Section 2 */}
         <section className={`section_home ${selected === 2 ? "active" : ""}`} onClick={() => handleClick(2)}>
@@ -38,7 +40,7 @@ const HomePage = () => {
             </p>}
         </section>
 
-        <div className="arrow">{">"}</div>
+        <div className="arrow">{isMobile ? <FaArrowDown /> : <FaArrowRight />}</div>
 
         {/* Section 3 */}
         <section className={`section_home ${selected === 3 ? "active" : ""}`} onClick={() => handleClick(3)}>

@@ -2,6 +2,7 @@ import React from "react";
 import { DrawnItem, Item } from "../model";
 import { AiFillDelete } from "react-icons/ai";
 import "./styles.css";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 type Props = {
   drawnItem: Item;
@@ -16,13 +17,14 @@ const SingleDrawnItem = ({
   setDrawnItems,
   isDrawnNow,
 }: Props) => {
-
+  const isMobile = useIsMobile();
+  
   const handleDelete = (id: string) => {
     setDrawnItems(drawnItems.filter((item) => item.id !== id));
   };
 
   return isDrawnNow ? (
-    <form className="items__single">
+    <form className={isMobile ? "mobile__items__single" : "items__single"}>
       <span className="items__single--text">{drawnItem.value}</span>
       <div>
         <span className="icon" onClick={() => handleDelete(drawnItem.id)}>

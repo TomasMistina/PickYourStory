@@ -8,10 +8,12 @@ import { useQuery } from "@tanstack/react-query";
 import SelectCard from "../Components/SelectCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CompactHatThemeDisplay from "../Components/ui/CompactHatThemeDisplay";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 const HatThemeSelectPage = () => {
-  const { currentUser } = useAuth();
   const [page, setPage] = useState(1);
+  const { currentUser } = useAuth();
+  const isMobile = useIsMobile();
   
   const location = useLocation();
   const navigate = useNavigate();
@@ -43,24 +45,47 @@ const HatThemeSelectPage = () => {
     setPage(newPage);
   };
 
+  const handleNavigateDenySelection = () => {
+    navigate( `./../../group/${id}`, { 
+      state: { lessonName}, 
+      replace: true,
+    })
+  }
+
+  const handleNavigateConfirmSelection = () => {
+    navigate( `./../../group/${id}`, { 
+      state: { lessonName, selectedHatTheme: currentSelectedHatThemeSimpler }, 
+      replace: true
+  })
+  }
+
   return (
     <div className="all__part__container_alt2">
-      <div className="hat__theme">
-        <button className="load__more__button" onClick={() =>
-            navigate( `./../../group/${id}`, { 
-                state: { lessonName}, 
-                replace: true
-            })
-        }>Zrušiť výber</button>
-        <span className="hat__title">Výber klobúku</span>
-        <button className="load__more__button" onClick={() =>
-            navigate( `./../../group/${id}`, { 
-                state: { lessonName, selectedHatTheme: currentSelectedHatThemeSimpler }, 
-                replace: true
-            })
-        }>Potvrdiť výber</button>
-      </div>
-      <div className="all__part__container__alt">
+      {isMobile 
+        ? 
+        <div className="mobile__hat__theme">
+          <span className="mobile__hat__title">Výber klobúku</span>
+          <div className="mobile__action__buttons">
+            <button className="mobile__action__button" onClick={handleNavigateDenySelection}>
+              Zrušiť výber
+            </button>
+            <button className="mobile__action__button" onClick={handleNavigateConfirmSelection}>
+              Potvrdiť výber
+            </button>
+          </div>
+        </div>
+        : 
+        <div className="hat__theme">
+          <button className="load__more__button" onClick={handleNavigateDenySelection}>
+            Zrušiť výber
+          </button>
+          <span className="hat__title">Výber klobúku</span>
+          <button className="load__more__button" onClick={handleNavigateConfirmSelection}>
+            Potvrdiť výber
+          </button>
+        </div>
+      }
+      <div className={isMobile? "all__part__container" : "all__part__container__alt"}>
         <div className="all__part__container">
           <div className="scroll__container">
             <div className="hattheme_collection">

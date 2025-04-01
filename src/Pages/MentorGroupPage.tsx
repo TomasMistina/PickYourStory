@@ -10,12 +10,15 @@ import LessonsListed from "../Components/LessonsListed";
 import CopyLabel from "../Components/ui/CopyLabel";
 import { IoPeople } from "react-icons/io5";
 import { UserPreview } from "../model";
+import { useIsMobile } from "../mobile/useIsMobile";
+import ParticipantNameDisplay from "../Components/ui/ParticipantNameDisplay";
 
 const MentorGroupPage = () => {
     const { currentUserId } = useAuth();
     const { id } = useParams();
     const [page, setPage] = useState(1);
     const userRef = useRef<HTMLInputElement>(null);
+    const isMobile = useIsMobile();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -118,16 +121,19 @@ const MentorGroupPage = () => {
             {participantListIsOpen && (
               <div>
                 <h3 className="access__code__style">Účastníci</h3>
-                <ul className="access__code__style">
+                <div className="all__part__container">
                   {group.participants?.map((participant : UserPreview) => (
-                    <li key={participant._id}>{participant.username}</li>
+                    <ParticipantNameDisplay
+                      key={participant._id}
+                      name={participant.username}
+                    />
                   ))}
-                </ul>
+                </div>
               </div>
             )}
           </div>
         </div>
-        <div className="all__part__container__alt">
+        <div className={isMobile ? "all__part__container" : "all__part__container__alt"}>
           <div className="all__part__container">
             <LessonsListed Lessons={lessons}/>
             <Pagination

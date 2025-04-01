@@ -6,11 +6,13 @@ import Pagination from "../Components/ui/Pagination";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import LessonsListed from "../Components/LessonsListed";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 const ParticipantGroupPage = () => {
     const { currentUserId } = useAuth();
     const { id } = useParams();
     const [page, setPage] = useState(1);
+    const isMobile = useIsMobile();
 
     const {
       data,
@@ -40,8 +42,8 @@ const ParticipantGroupPage = () => {
   
     return (
       <div className="all__part__container">
-        <div className="hat__theme">
-          <span className="hat__title">{group?.groupName}</span>
+        <div className={isMobile ? "mobile__hat__theme" : "hat__theme"}>
+          <span className={isMobile ? "mobile__hat__title__alt" : "hat__title"}>{group?.groupName}</span>
         </div>
         <LessonsListed Lessons={lessons}/>
         <Pagination

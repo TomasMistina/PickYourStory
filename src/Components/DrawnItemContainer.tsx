@@ -1,6 +1,7 @@
 import React from "react";
 import { DrawnItem, Item } from "../model";
 import SingleDrawnItem from "./SingleDrawnItem";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 type Props = {
   drawnItems: Item[];
@@ -15,14 +16,15 @@ const DrawnItemContainer = ({
   setDrawnItems,
   isDrawnNow,
 }: Props) => {
+  const isMobile = useIsMobile();
   const lastDrawnItem =
     drawnItems.length > 0 ? drawnItems[drawnItems.length - 1] : null;
 
   return (
     <div className="drawn__item__container">
-      <span className="hat__heading">Posledné vytiahnuté</span>
+      <span className={isMobile? "mobile__hat__heading" : "hat__heading" }>Posledné vytiahnuté</span>
       {isHatEmpty ? (
-        <span className="drawn__item__container__message">
+        <span className={isMobile ? "mobile__drawn__item__container__message" : "drawn__item__container__message"}>
           Klobúk, z ktorého ste ťahali je prázdny
         </span>
       ) : lastDrawnItem ? (
@@ -34,7 +36,7 @@ const DrawnItemContainer = ({
           isDrawnNow={isDrawnNow}
         />
       ) : (
-        <span className="drawn__item__container__message">
+        <span className={isMobile ? "mobile__drawn__item__container__message" : "drawn__item__container__message"}>
           Zatiaľ nebolo nič vytiahnuté
         </span>
       )}

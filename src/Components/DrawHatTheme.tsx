@@ -10,6 +10,7 @@ import useAuth from "../auth/useAuth";
 import { useLocation, useNavigate} from "react-router-dom";
 import DrawHat from "./DrawHat";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useIsMobile } from "../mobile/useIsMobile";
 
 type Props = {
   title: string;
@@ -26,6 +27,7 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
   const [hats, setHats] = useState<Item[][]>([[], [], []]);
   const [hatOwner, setHatOwner] = useState<string | null>(null);
   const { currentUserId } = useAuth();
+  const isMobile = useIsMobile();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -122,55 +124,75 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
 // *** UI ***
   return (
     <>
+      {isMobile ?
+        <div className="mobile__hat__theme">
+          <span className="mobile__hat__title">{title}</span>
+          <div className="mobile__action__buttons">
+            <button
+              className="mobile__action__button"
+              onClick={() => navigate(lessonId ? "./../.." : `./../../${id}`, { replace: true })}
+            >
+              Neuložiť zoznam
+            </button>
+            <button className="mobile__action__button"  
+              onClick={() => {!drawnWordsId ? saveDrawnWordsMutation.mutate() : updateDrawnWordsMutation.mutate()}}
+            >
+              Uložiť zoznam
+            </button>
+          </div>
+        </div> 
+        : 
         <div className="hat__theme">
             <button
               className="load__more__button"
               onClick={() => navigate(lessonId ? "./../.." : `./../../${id}`, { replace: true })}
             >
-            Vymazať zoznam
+            Neuložiť zoznam
             </button>
             <span className="hat__title">{title}</span>
             <button className="load__more__button"  
-              onClick={() => {!drawnWordsId ? saveDrawnWordsMutation.mutate() : updateDrawnWordsMutation.mutate()}}>
+              onClick={() => {!drawnWordsId ? saveDrawnWordsMutation.mutate() : updateDrawnWordsMutation.mutate()}}
+              >
             Uložiť zoznam
             </button>
         </div>
-        <div className="container">
-            <div className="draw__words__container">
-            <DrawHat
-                hatType={HatType.characters}
-                updateDrawnItems={updateDrawnItems}
-                setIsHatEmpty={setIsHatEmpty}
-                updateHats={updateHats}
-                hats={hats}
-            />
-            <DrawHat
-                hatType={HatType.magical_items}
-                updateDrawnItems={updateDrawnItems}
-                setIsHatEmpty={setIsHatEmpty}
-                updateHats={updateHats}
-                hats={hats}
-            />
-            <DrawHat
-                hatType={HatType.phrases}
-                updateDrawnItems={updateDrawnItems}
-                setIsHatEmpty={setIsHatEmpty}
-                updateHats={updateHats}
-                hats={hats}
-            />
-            </div>
-            <DrawnItemContainer
-            drawnItems={drawnItems}
-            isHatEmpty={isHatEmpty}
-            setDrawnItems={setDrawnItems}
-            isDrawnNow={true}
-            />
-            <DrawnItemsList
-            drawnItems={drawnItems}
-            setDrawnItems={setDrawnItems}
-            isDrawnNow={true}
-            />
-        </div>
+      }
+      <div className={isMobile ? "mobile__container" : "container" }>
+        <div className={isMobile ? "mobile__draw__words__container" : "draw__words__container" }>
+          <DrawHat
+              hatType={HatType.characters}
+              updateDrawnItems={updateDrawnItems}
+              setIsHatEmpty={setIsHatEmpty}
+              updateHats={updateHats}
+              hats={hats}
+          />
+          <DrawHat
+              hatType={HatType.magical_items}
+              updateDrawnItems={updateDrawnItems}
+              setIsHatEmpty={setIsHatEmpty}
+              updateHats={updateHats}
+              hats={hats}
+          />
+          <DrawHat
+              hatType={HatType.phrases}
+              updateDrawnItems={updateDrawnItems}
+              setIsHatEmpty={setIsHatEmpty}
+              updateHats={updateHats}
+              hats={hats}
+          />
+          </div>
+          <DrawnItemContainer
+          drawnItems={drawnItems}
+          isHatEmpty={isHatEmpty}
+          setDrawnItems={setDrawnItems}
+          isDrawnNow={true}
+          />
+          <DrawnItemsList
+          drawnItems={drawnItems}
+          setDrawnItems={setDrawnItems}
+          isDrawnNow={true}
+          />
+      </div>
     </>
   );
 };
