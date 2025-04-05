@@ -122,6 +122,15 @@ label{
     padding: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
+.info__message{
+    background-color: rgb(111, 178, 255);
+    color: rgb(28, 58, 158);
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .home{
     flex-direction: row;
     align-self: center;
@@ -129,4 +138,16 @@ label{
 
 .span__pagination{
     color: #e2fffcc9;
+}
+
+.close_xmark {
+    color: orange;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 5px;
+}
+  
+.close_xmark:hover {
+    color: darkorange;
 }

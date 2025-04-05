@@ -64,3 +64,9 @@
     color: darkred;
   }
   
+  .profile__buttons__container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}

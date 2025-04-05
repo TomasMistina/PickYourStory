@@ -79,6 +79,16 @@ const LoginPage = () => {
           </Link>
         </span>
       </p>
+
+      <p>
+        Zabudli ste heslo?
+        <br />
+        <span className="line">
+          <Link className="signin__link" to="/forgot-password">
+            Prejsť na obnovenie hesla
+          </Link>
+        </span>
+      </p>
     </section>
   );
 };

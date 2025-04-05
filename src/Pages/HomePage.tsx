@@ -26,7 +26,7 @@ const HomePage = () => {
             </p>}
         </section>
 
-        <div className="arrow">{isMobile ? <FaArrowDown /> : <FaArrowRight />}</div>
+        <div className="arrow">{isMobile ? <FaArrowDown className="arrow"/> : <FaArrowRight className="arrow"/>}</div>
 
         {/* Section 2 */}
         <section className={`section_home ${selected === 2 ? "active" : ""}`} onClick={() => handleClick(2)}>

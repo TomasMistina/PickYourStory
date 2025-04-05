@@ -4,10 +4,9 @@ import { CiCircleCheck, CiCircleRemove, CiCircleInfo } from "react-icons/ci";
 import axios from "./../api/axios";
 import "./pages.css";
 import useAuth from "../auth/useAuth";
+import Passwords from "../Components/Passwords";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 //Got this email regex from here: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
 const EMAIL_REGEX = /^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$/;
 const REGISTER_URL = "user/register";
@@ -36,12 +35,10 @@ const RegisterPage = () => {
   //Password useStates
   const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
-  const [passwordFocus, setPasswordFocus] = useState(false);
 
   //Repeat Password useStates
   const [repeatPassword, setRepeatPassword] = useState("");
   const [validRepeatPassword, setValidRepeatPassword] = useState(false);
-  const [repeatPasswordFocus, setRepeatPasswordFocus] = useState(false);
 
   //Message useStates
   const [errMsg, setErrMsg] = useState("");
@@ -59,13 +56,6 @@ const RegisterPage = () => {
     const result = EMAIL_REGEX.test(email);
     setValidEmail(result);
   }, [email]);
-
-  useEffect(() => {
-    const result = PASSWORD_REGEX.test(password);
-    setValidPassword(result);
-    const match = password === repeatPassword;
-    setValidRepeatPassword(match);
-  }, [password, repeatPassword]);
 
   useEffect(() => {
     setErrMsg("");
@@ -144,45 +134,18 @@ const RegisterPage = () => {
         ) : (
           <></>
         )}
-        <label htmlFor="password">Heslo:</label>
-        <input
-          type="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          onFocus={() => setPasswordFocus(true)}
-          onBlur={() => setPasswordFocus(false)}
-        ></input>
-        {passwordFocus && !validPassword ? (
-          <p>
-            <span className="mini__icon">
-              <CiCircleInfo />
-            </span>
-            8 až 24 znakov <br />
-            Musí obsahovať veľké písmená, malé písmená a číslice
-          </p>
-        ) : (
-          <></>
-        )}
-        <label htmlFor="repeatpassword">Zopakovanie Hesla:</label>
-        <input
-          type="password"
-          id="repeatpassword"
-          onChange={(e) => setRepeatPassword(e.target.value)}
-          required
-          onFocus={() => setRepeatPasswordFocus(true)}
-          onBlur={() => setRepeatPasswordFocus(false)}
-        ></input>
-        {repeatPasswordFocus && !validRepeatPassword ? (
-          <p>
-            <span className="mini__icon">
-              <CiCircleInfo />
-            </span>
-            Musí sa zhodovať s heslom v poli heslo.
-          </p>
-        ) : (
-          <></>
-        )}
+        <Passwords
+            password={password} 
+            setPassword={setPassword} 
+            repeatPassword={repeatPassword} 
+            setRepeatPassword={setRepeatPassword}
+            validPassword={validPassword} 
+            setValidPassword={setValidPassword} 
+            validRepeatPassword={validRepeatPassword} 
+            setValidRepeatPassword={setValidRepeatPassword}
+            passwordLabel="Heslo:"
+            repeatPasswordLabel="Zopakovanie hesla:"
+            />
         <button
           disabled={
             !validName || !validEmail || !validPassword || !validRepeatPassword

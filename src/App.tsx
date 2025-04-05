@@ -22,6 +22,9 @@ import MentorLessonPage from "./Pages/MentorLessonPage";
 import ParticipantLessonPage from "./Pages/ParticipantLessonPage";
 import HatThemeSelectPage from "./Pages/HatThemeSelectPage";
 import { useIsMobile } from "./mobile/useIsMobile";
+import ChangePasswordPage from "./Pages/ChangePasswordPage";
+import ChangeEmailPage from "./Pages/ChangeEmailPage";
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 
 function App() {
   const isMobile = useIsMobile();
@@ -32,8 +35,11 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage/>} />
           <Route path="/" element={<Home />} />
-          <Route element={<RequireAuth />}>  
+          <Route element={<RequireAuth />}>
+            <Route path="/change-password" element={<ChangePasswordPage/>} />
+            <Route path="/change-email" element={<ChangeEmailPage/>} />
             <Route path="/create-hat" element={<CreateHat />} />
             <Route path="/my-drawn-words" element={<MyDrawnWords />} />
             <Route path="/my-drawn-words/:id" element={<DrawnWords />} />

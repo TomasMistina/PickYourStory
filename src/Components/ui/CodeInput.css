@@ -1,0 +1,22 @@
+.code-input-container {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .code-input {
+    width: 44px;
+    height: 54px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid #aaa;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease;
+  }
+  
+  .code-input:focus {
+    border-color: white;
+  }
+  

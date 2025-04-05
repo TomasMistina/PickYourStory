@@ -86,19 +86,19 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
           <div className="mobile__hat__theme">
             <span className="mobile__hat__title">{title}</span>
             <div className="mobile__action__buttons">
-              {currentUserId === hatOwner ? (
+              {(currentUserId === hatOwner) &&
                 <Link
                 className="mobile__action__button"
                 to={`/hat-themes/my-hats/edit/${id}`}
                 >
                 Upraviť klobúk
-              </Link>
-              ) : (
-                <button className="mobile__action__button" 
-                  onClick={() => copyHatThemeMutation.mutate()}>
-                  Kopírovať klobúk
-                </button>
-              )}
+                </Link>
+              }
+              <button className="mobile__action__button" 
+                onClick={() => copyHatThemeMutation.mutate()}>
+                Kopírovať klobúk
+              </button>
+
               <Link
               className="mobile__action__button"
               to={`./../draw/${id}`}
@@ -129,16 +129,15 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
         : 
         <>
           <div className="hat__theme">
-            {currentUserId === hatOwner ? (
+            <button className="load__more__button" onClick={() => copyHatThemeMutation.mutate()}>Kopírovať klobúk</button>
+            {(currentUserId === hatOwner) && (
               <Link
               className="load__more__button"
               to={`/hat-themes/my-hats/edit/${id}`}
               >
               Upraviť klobúk
             </Link>
-            ) : (
-              <button className="load__more__button" onClick={() => copyHatThemeMutation.mutate()}>Kopírovať klobúk</button>
-            )}
+            ) }
 
             <span className="hat__title">{title}</span>
             <Link

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaUserLarge } from "react-icons/fa6";
 import useAuth from "../../auth/useAuth";
-import "./ProfileButton.css"
+import "./ProfileButton.css";
 import { useNavigate } from "react-router-dom";
 import { useIsMobile } from "../../mobile/useIsMobile";
 
@@ -41,6 +41,16 @@ const ProfileButton = () => {
         toggleModal()
     }
 
+    function handleChangePassword(){
+        navigate("/change-password");
+        toggleModal()
+    }
+
+    function handleChangeEmail(){
+        navigate("/change-email");
+        toggleModal()
+    }
+
     return(
         <>
             <button onClick={() => toggleModal()} className="open-button"><FaUserLarge /></button>
@@ -51,13 +61,18 @@ const ProfileButton = () => {
                     {currentUser ? 
                         (<>
                         <h2>Prihlásený ako: {currentUser}</h2>
-                        <button className="load__more__button" onClick={() => handleLogout()}>Odhlásiť sa</button>
-                        {/* <button onClick={() => handleLogout()}>Zmeniť heslo</button> */}
+                        <div className="profile__buttons__container">
+                            <button className="load__more__button" onClick={() => handleLogout()}>Odhlásiť sa</button>
+                            <button className="load__more__button" onClick={() => handleChangePassword()}>Zmeniť heslo</button>
+                            <button className="load__more__button" onClick={() => handleChangeEmail()}>Zmeniť email</button>
+                        </div>
                         </>)
                         :
                         (<>
                         <h2 >Nie ste prihlásený</h2>
-                        <button className="load__more__button" onClick={()=> handleLogIn()}>Prihlásiť sa</button>
+                        <div className="profile__buttons__container">
+                            <button className="load__more__button" onClick={()=> handleLogIn()}>Prihlásiť sa</button>
+                        </div>
                         </>)
                     }
                 </div>
