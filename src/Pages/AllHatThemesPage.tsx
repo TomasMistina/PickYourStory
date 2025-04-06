@@ -33,7 +33,6 @@ const AllHatThemes = () => {
     setPage(newPage);
   };
 
-  console.log(data)
   return (
     <div className="all__part__container">
       <div className="scroll__container">

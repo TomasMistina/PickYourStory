@@ -20,10 +20,10 @@ const CopyLabel = ({accessCode}: Props) =>{
   };
 
   return (
-    <div>
-      <label className="access__code__style">Kód prístupu: </label>
-      <span className="access__code__style">{accessCode} </span>
-      <button onClick={handleCopy}>
+    <div className="copy__code">
+      <label>Kód prístupu: </label>
+      <span>{accessCode} </span>
+      <button className="copy__button" onClick={handleCopy}>
         {copied ? <HiMiniClipboardDocumentCheck /> : <HiMiniClipboardDocumentList />}
       </button>
     </div>

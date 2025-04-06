@@ -5,6 +5,7 @@ import axios from "./../api/axios";
 import "./pages.css";
 import useAuth from "../auth/useAuth";
 import Passwords from "../Components/Passwords";
+import Email from "../Components/Email";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 //Got this email regex from here: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
@@ -30,7 +31,6 @@ const RegisterPage = () => {
   //Email useStates
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
-  const [emailFocus, setEmailFocus] = useState(false);
 
   //Password useStates
   const [password, setPassword] = useState("");
@@ -115,25 +115,13 @@ const RegisterPage = () => {
         ) : (
           <></>
         )}
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          onFocus={() => setEmailFocus(true)}
-          onBlur={() => setEmailFocus(false)}
-        ></input>
-        {emailFocus && !validEmail ? (
-          <p>
-            <span className="mini__icon">
-              <CiCircleInfo />
-            </span>
-            Email musí byť v správnom formáte <br />
-          </p>
-        ) : (
-          <></>
-        )}
+        <Email
+          email={email}
+          setEmail={setEmail}
+          validEmail={validEmail}
+          setValidEmail={setValidEmail}
+          emailLabel="Email"
+          /> 
         <Passwords
             password={password} 
             setPassword={setPassword} 

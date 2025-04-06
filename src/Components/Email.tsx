@@ -12,7 +12,7 @@ type Props = {
 //Got this email regex from here: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
 const EMAIL_REGEX = /^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$/;
 
-const Passwords = ({email, setEmail, validEmail, setValidEmail, emailLabel}: Props) => {  
+const Email = ({email, setEmail, validEmail, setValidEmail, emailLabel}: Props) => {  
     const [emailFocus, setEmailFocus] = useState(false);
     useEffect(() => {
           const result = EMAIL_REGEX.test(email);
@@ -44,7 +44,7 @@ const Passwords = ({email, setEmail, validEmail, setValidEmail, emailLabel}: Pro
   );
 };
 
-export default Passwords;
+export default Email;
 
 
 

@@ -34,7 +34,6 @@ const ParticipantGroupPage = () => {
     if (!data) return <p>No group found</p>;
 
     const { group, lessons, pagination } = data;
-    console.log(data)
   
     const handlePageChange = (newPage: number) => {
       setPage(newPage);

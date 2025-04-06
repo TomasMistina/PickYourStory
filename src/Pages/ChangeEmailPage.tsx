@@ -3,6 +3,7 @@ import axios from "../api/axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import Email from "../Components/Email";
+import { useQuery } from "@tanstack/react-query";
 
 const CHANGE_MAIL_URL = "user/change-email";
 
@@ -20,6 +21,19 @@ const ChangeEmailPage = () => {
   //Email useStates
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
+
+  const {
+    data,
+    isError,
+    isLoading,
+    error
+  } = useQuery({
+    queryKey: ["current_email", currentUserId],
+    queryFn: async () => {
+      const response = await axios.get(`/user/get-email?userId=${currentUserId}`);
+      return await response.data;
+    },
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,10 +58,19 @@ const ChangeEmailPage = () => {
     }
   };
 
+    if (isLoading) return <p>Loading...</p>;
+    if (isError) return <p>Error: {error.message}</p>;
+    
+    const currentEmail = data.email;
+
   return (
     <section>
       {errMsg ? <p className="error__message">{errMsg}</p> : <></>}
       <h1>Zmena emailu</h1>
+      <label>
+        Aktuálny email: {currentEmail? currentEmail : "Email sa nenašiel"}
+      </label>
+      
       <form onSubmit={handleSubmit}>
         <label htmlFor="password">Heslo:</label>
         <input

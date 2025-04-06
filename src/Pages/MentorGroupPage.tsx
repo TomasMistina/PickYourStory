@@ -110,38 +110,68 @@ const MentorGroupPage = () => {
         setParticipantListIsOpen(false);
       }
     }
-  
+
     return (
       <div className="all__part__container__alt2">
-        <div className="hat__theme__alt">
-          <CopyLabel accessCode={group.accessCode}/>
-          <span className="hat__title">{group?.groupName}</span>
-          <div>
-          <button onClick={handleParticipantListToggle}><IoPeople/> {group?.participants?.length}</button>
-            {participantListIsOpen && (
+        {isMobile ?
+          <div className="mobile__hat__theme">
+            <span className="mobile__hat__title__alt">{group?.groupName}</span>
+            <div className="mobile__action__buttons">
               <div>
-                <h3 className="access__code__style">Účastníci</h3>
-                <div className="all__part__container">
-                  {group.participants?.map((participant : UserPreview) => (
-                    <ParticipantNameDisplay
+                <div className="copy__code">
+                  <label>Účastníci</label>
+                  <button className="copy__button" onClick={handleParticipantListToggle}><IoPeople/> {group?.participants?.length}</button>
+                </div>
+                {participantListIsOpen && (
+                  <div className="name__list">
+                    <div className="all__part__container">
+                      {group.participants?.map((participant : UserPreview) => (
+                        <ParticipantNameDisplay
+                        key={participant._id}
+                        name={participant.username}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <CopyLabel accessCode={group?.accessCode}/>
+            </div>
+          </div>
+        :
+          <div className="hat__theme__alt">
+            <div>
+              <div className="copy__code">
+                <label>Účastníci</label>
+                <button className="copy__button" onClick={handleParticipantListToggle}><IoPeople/> {group?.participants?.length}</button>
+              </div>
+              {participantListIsOpen && (
+                <div className="name__list">
+                    {group.participants?.map((participant : UserPreview) => (
+                      <ParticipantNameDisplay
                       key={participant._id}
                       name={participant.username}
-                    />
-                  ))}
+                      />
+                    ))}
+
                 </div>
-              </div>
-            )}
+              )}
+            </div>
+            <span className="hat__title">{group?.groupName}</span>
+            <CopyLabel accessCode={group?.accessCode}/>
           </div>
-        </div>
+        }
         <div className={isMobile ? "all__part__container" : "all__part__container__alt"}>
-          <div className="all__part__container">
-            <LessonsListed Lessons={lessons}/>
-            <Pagination
-              currentPage={pagination.currentPage}
-              totalPages={pagination.totalPages}
-              onPageChange={handlePageChange}
-              />
-          </div>
+          {(pagination.totalPages)> 0 &&
+            <div className="all__part__container">
+              <LessonsListed Lessons={lessons}/>
+              <Pagination
+                currentPage={pagination.currentPage}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+                />
+            </div>
+          }
           <section>
             {errMsg && <p className="error__message">{errMsg}</p>}
             {successMsg && <p className="success__message">{successMsg}</p>}
