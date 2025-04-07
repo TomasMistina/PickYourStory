@@ -104,6 +104,19 @@ form {
     opacity: 0.7;
 }
 
+.action__nonbutton__disabled__closed{
+    margin: 0 2rem ;
+    padding: 0.5rem ;
+    font-size: 1rem;
+    background-color: #1679AB;
+    color: #f27b7b;
+    text-decoration: none;
+    border: var(--primary_dark);
+    font-family: inherit;
+    border-style: none;
+    opacity: 0.7;
+}
+
 .mobile__action__button{
     margin: 0.5rem 1rem;
     padding: 0.5rem;
@@ -132,6 +145,21 @@ form {
     font-family: inherit;
     border-style: none;
     opacity: 0.7;
+    align-content: center;
+}
+
+.mobile__action__nonbutton__disabled__closed{
+    margin: 0.5rem 1rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    background-color: #1679AB;
+    color: #f27b7b;
+    text-decoration: none;
+    border: var(--primary_dark);
+    font-family: inherit;
+    border-style: none;
+    opacity: 0.7;
+    align-content: center;
 }
 
 .signin__link, .signin__link:visited {
