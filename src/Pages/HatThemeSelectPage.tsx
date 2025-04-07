@@ -76,11 +76,11 @@ const HatThemeSelectPage = () => {
         </div>
         : 
         <div className="hat__theme">
-          <button className="load__more__button" onClick={handleNavigateDenySelection}>
+          <button className="action__button" onClick={handleNavigateDenySelection}>
             Zrušiť výber
           </button>
           <span className="hat__title">Výber klobúku</span>
-          <button className="load__more__button" onClick={handleNavigateConfirmSelection}>
+          <button className="action__button" onClick={handleNavigateConfirmSelection}>
             Potvrdiť výber
           </button>
         </div>

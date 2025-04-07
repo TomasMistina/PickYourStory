@@ -73,7 +73,7 @@ const MentorLessonPage = () => {
           <div className="mobile__hat__theme">
             <span className="mobile__hat__title__alt">{lesson?.lessonName}</span>
             <div className="mobile__action__buttons">
-              <span className="mobile__action__button">
+              <span className="mobile__action__nonbutton__disabled">
                 Klobúk je {lesson?.isOpen ? "otvorený" : "uzavretý"}
               </span>
               <button className="mobile__action__button" onClick={() => toggleLock.mutate()}>
@@ -83,11 +83,11 @@ const MentorLessonPage = () => {
           </div>
           : 
           <div className="hat__theme">
-            <span className="load__more__button">
+            <span className="action__nonbutton__disabled">
               Klobúk je {lesson?.isOpen ? "otvorený" : "uzavretý"}
             </span>
             <span className="hat__title">{lesson?.lessonName}</span>
-            <button className="load__more__button" onClick={() => toggleLock.mutate()}>
+            <button className="action__button" onClick={() => toggleLock.mutate()}>
               {lesson?.isOpen ? "Uzavrieť klobúk" : "Otvoriť klobúk"}
             </button>
           </div>

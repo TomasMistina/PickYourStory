@@ -62,16 +62,16 @@ const ProfileButton = () => {
                         (<>
                         <h2>Prihlásený ako: {currentUser}</h2>
                         <div className="profile__buttons__container">
-                            <button className="load__more__button" onClick={() => handleLogout()}>Odhlásiť sa</button>
-                            <button className="load__more__button" onClick={() => handleChangePassword()}>Zmeniť heslo</button>
-                            <button className="load__more__button" onClick={() => handleChangeEmail()}>Zmeniť email</button>
+                            <button className="action__button" onClick={() => handleLogout()}>Odhlásiť sa</button>
+                            <button className="action__button" onClick={() => handleChangePassword()}>Zmeniť heslo</button>
+                            <button className="action__button" onClick={() => handleChangeEmail()}>Zmeniť email</button>
                         </div>
                         </>)
                         :
                         (<>
                         <h2 >Nie ste prihlásený</h2>
                         <div className="profile__buttons__container">
-                            <button className="load__more__button" onClick={()=> handleLogIn()}>Prihlásiť sa</button>
+                            <button className="action__button" onClick={()=> handleLogIn()}>Prihlásiť sa</button>
                         </div>
                         </>)
                     }

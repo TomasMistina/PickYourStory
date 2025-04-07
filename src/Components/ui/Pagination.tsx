@@ -1,5 +1,6 @@
 import React from "react";
 import "../../Pages/pages.css";
+import { useIsMobile } from "../../mobile/useIsMobile";
 
 type Props = {
     currentPage: number;
@@ -8,12 +9,14 @@ type Props = {
 };
 
 const Pagination = ({ currentPage, totalPages, onPageChange } : Props) => {
+  const isMobile = useIsMobile();
+
   return (
     <>
       {(totalPages>0) 
       ? 
       <div>
-        <button className="load__more__button"
+        <button className={isMobile? "mobile__action__button" : "action__button"}
           onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
           disabled={currentPage === 1}
           >
@@ -22,7 +25,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange } : Props) => {
         <span className="span__pagination">
           {currentPage} / {totalPages}
         </span>
-        <button className="load__more__button"
+        <button className={isMobile? "mobile__action__button" : "action__button"}
           onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
           disabled={currentPage === totalPages}
           >

@@ -376,7 +376,7 @@
 .edit__hat__theme{
     flex-direction: row;
     /*margin: 0.625rem 0rem;*/
-    min-height: 4.375rem;
+    /*min-height: 4.375rem;*/
     display: flex;
     justify-content: center;
 }
@@ -593,4 +593,18 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 5px;
+}
+
+.link__style{
+    background-color: var(--primary_dark);
+    padding: 0.25rem;
+    color: var(--secondary_light);
+    border-color: #07133e;
+    border-style: ridge;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    width: fit-content;
+    align-self: center;
 }

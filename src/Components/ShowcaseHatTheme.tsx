@@ -129,10 +129,10 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
         : 
         <>
           <div className="hat__theme">
-            <button className="load__more__button" onClick={() => copyHatThemeMutation.mutate()}>Kopírovať klobúk</button>
+            <button className="action__button" onClick={() => copyHatThemeMutation.mutate()}>Kopírovať klobúk</button>
             {(currentUserId === hatOwner) && (
               <Link
-              className="load__more__button"
+              className="action__button"
               to={`/hat-themes/my-hats/edit/${id}`}
               >
               Upraviť klobúk
@@ -141,7 +141,7 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
 
             <span className="hat__title">{title}</span>
             <Link
-            className="load__more__button"
+            className="action__button"
             to={`./../draw/${id}`}
             >
               Vytiahnuť z klobúku

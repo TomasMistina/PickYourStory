@@ -91,18 +91,18 @@ const ParticipantLessonPage = () => {
           </div>
           : 
           <div className="hat__theme">
-            <span className="load__more__button">
+            <span className="action__button">
               Klobúk je {lesson?.isOpen ? "otvorený" : "uzavretý"}
             </span>
             <span className="hat__title">{lesson?.lessonName}</span>
             {!drawnWordsList.drawnWordsList
               ? 
-              <button className="load__more__button"
+              <button className="action__button"
                 onClick={handleNavigateNewDraw}>
                 Vytiahnuť z klobúka
               </button>
               : 
-              <button className="load__more__button"
+              <button className="action__button"
                 onClick={handleNavigateRedraw}>
                 Dotiahnuť z klobúka
               </button>

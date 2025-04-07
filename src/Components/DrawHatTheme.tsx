@@ -144,13 +144,13 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
         : 
         <div className="hat__theme">
             <button
-              className="load__more__button"
+              className="action__button"
               onClick={() => navigate(lessonId ? "./../.." : `./../../${id}`, { replace: true })}
             >
             Neuložiť zoznam
             </button>
             <span className="hat__title">{title}</span>
-            <button className="load__more__button"  
+            <button className="action__button"  
               onClick={() => {!drawnWordsId ? saveDrawnWordsMutation.mutate() : updateDrawnWordsMutation.mutate()}}
               >
             Uložiť zoznam

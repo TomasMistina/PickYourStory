@@ -225,7 +225,7 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
         <>
           <div className="edit__hat__theme">
             <button
-              className="load__more__button"
+              className="action__button"
               onClick={handleDiscardChanges}
             >
               Zahodiť zmeny
@@ -257,7 +257,7 @@ const EditHatTheme = ({ title, setTitle, id }: Props) => {
               </span>
             </form>
             <button
-              className="load__more__button"
+              className="action__button"
               onClick={ () => { 
                 const isNotEmpty = handleEmptyCheck();
                 if (isNotEmpty){

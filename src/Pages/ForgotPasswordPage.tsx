@@ -194,8 +194,8 @@ const ForgotPasswordPage = () => {
             }
         </> 
         : 
-        <button className="load__more__button" onClick={() => handleLogIn()}>Prihlásiť sa</button>
-        }
+      <button className="action__button" onClick={() => handleLogIn()}>Prihlásiť sa</button>
+      }
     </section>
   );
 };
