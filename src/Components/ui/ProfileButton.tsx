@@ -51,6 +51,11 @@ const ProfileButton = () => {
         toggleModal()
     }
 
+    function handleChangeUsername(){
+        navigate("/change-username");
+        toggleModal()
+    }
+
     return(
         <>
             <button onClick={() => toggleModal()} className="open-button"><FaUserLarge /></button>
@@ -65,6 +70,7 @@ const ProfileButton = () => {
                             <button className="action__button" onClick={() => handleLogout()}>Odhlásiť sa</button>
                             <button className="action__button" onClick={() => handleChangePassword()}>Zmeniť heslo</button>
                             <button className="action__button" onClick={() => handleChangeEmail()}>Zmeniť email</button>
+                            <button className="action__button" onClick={() => handleChangeUsername()}>Zmeniť meno</button>
                         </div>
                         </>)
                         :

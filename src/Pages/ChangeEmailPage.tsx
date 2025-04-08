@@ -52,6 +52,8 @@ const ChangeEmailPage = () => {
         setErrMsg("Neboli zadané všetky údaje");
       } else if (err.response?.status === 401) {
         setErrMsg("Nesprávne zadané heslo");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Tento email už niekto používa");
       } else {
         setErrMsg("Nepodarilo sa zmeniť email");
       }

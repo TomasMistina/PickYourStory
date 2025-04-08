@@ -25,6 +25,7 @@ import { useIsMobile } from "./mobile/useIsMobile";
 import ChangePasswordPage from "./Pages/ChangePasswordPage";
 import ChangeEmailPage from "./Pages/ChangeEmailPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
+import ChangeUsernamePage from "./Pages/ChangeUsernamePage";
 
 function App() {
   const isMobile = useIsMobile();
@@ -40,6 +41,7 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/change-password" element={<ChangePasswordPage/>} />
             <Route path="/change-email" element={<ChangeEmailPage/>} />
+            <Route path="/change-username" element={<ChangeUsernamePage/>} />
             <Route path="/create-hat" element={<CreateHat />} />
             <Route path="/my-drawn-words" element={<MyDrawnWords />} />
             <Route path="/my-drawn-words/:id" element={<DrawnWords />} />
