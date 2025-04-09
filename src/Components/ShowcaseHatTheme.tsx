@@ -6,9 +6,10 @@ import axios from "./../api/axios";
 import useAuth from "../auth/useAuth";
 import { Link } from "react-router-dom";
 import ShowcaseHat from "./ShowcaseHat";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useIsMobile } from "../mobile/useIsMobile";
 import MobileTabLayout from "./ui/MobileTabLayout";
+import { FaToggleOn, FaToggleOff} from "react-icons/fa";
 
 type Props = {
   title: string;
@@ -25,6 +26,8 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
 
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
+  const queryClient = useQueryClient();
 
   const { data: hatThemeData, isLoading, isError} = useQuery({
     queryKey: ["hatTheme", id, currentUserId],
@@ -53,7 +56,6 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
       const response = await axios.post(`/hat-theme/copy/${id}`, {
         userId: currentUserId,
       });
-      console.log(response);
       return response.data;
     },
     onSuccess: () => {
@@ -66,6 +68,28 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
         setErrMsg("Server bez odozvy");
       } else {
         setErrMsg("Nepodarilo sa kopírovať klobúk");
+      }
+      setSuccessMsg("");
+    },
+  });
+
+  const toggleHatVisibilityMutation = useMutation({
+    mutationFn: async (makePublic : boolean) => {
+      const response = await axios.patch(`/hat-theme/toggle-visibility/${id}`, {
+        makePublic: makePublic,
+      });
+      return response.data;
+    },
+    onSuccess: () => {
+      setErrMsg("");
+      queryClient.invalidateQueries({ queryKey: ["hatTheme", id, currentUserId] });
+    },
+    onError: (err: any) => {
+      console.log("Error data"+ err);
+      if (!err?.response) {
+        setErrMsg("Server bez odozvy");
+      } else {
+        setErrMsg("Nepodarilo sa prestaviť viditeľnosť klobúku");
       }
       setSuccessMsg("");
     },
@@ -105,6 +129,15 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
               >
                 Vytiahnuť z klobúku
               </Link>
+
+              {(currentUserId === hatOwner) && (
+              <span className="visibility__label">
+                Viditeľnosť ostatnými
+                <button className={hatThemeData?.isPublic ? "visibility__button__on" : "visibility__button__off" } onClick={() => toggleHatVisibilityMutation.mutate(!(hatThemeData?.isPublic))}>
+                  {hatThemeData?.isPublic ? <FaToggleOn /> : <FaToggleOff /> }
+                </button>
+              </span>
+              )}
             </div>
           </div>
           <div className="mobile__container">
@@ -146,6 +179,14 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
             >
               Vytiahnuť z klobúku
             </Link>
+            {(currentUserId === hatOwner) && (
+              <span className="visibility__label">
+                Viditeľnosť ostatnými
+                <button className={hatThemeData?.isPublic ? "visibility__button__on" : "visibility__button__off" } onClick={() => toggleHatVisibilityMutation.mutate(!(hatThemeData?.isPublic))}>
+                  {hatThemeData?.isPublic ? <FaToggleOn /> : <FaToggleOff /> }
+                </button>
+              </span>
+            )}
           </div>
           <div className="container">
             <ShowcaseHat

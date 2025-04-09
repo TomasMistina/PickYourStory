@@ -608,3 +608,42 @@
     width: fit-content;
     align-self: center;
 }
+
+.visibility__label{
+    background-color: var(--primary_dark);
+    padding: 0.25rem;
+    color: var(--secondary_light);
+    border-color: #07133e;
+    border-style: ridge;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    width: fit-content;
+    align-self: center;
+}
+
+.visibility__button__on{
+    background: transparent;
+    padding: 0.25rem;
+    color: rgb(10, 95, 10);
+    border-style: none;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    align-self: center;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.visibility__button__off{
+    background: transparent;
+    padding: 0.25rem;
+    color: rgb(176, 26, 26);
+    border-style: none;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    align-self: center;
+    vertical-align: middle;
+    margin: 0;
+}
