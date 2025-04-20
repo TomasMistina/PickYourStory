@@ -12,6 +12,20 @@ section {
     color: #5DEBD7;
 }
 
+.section__alt {
+    width: 100%;
+    max-width: 26.25rem;
+    min-height: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    align-self: center;
+    color: #5DEBD7;
+}
+
 form {
     display: flex;
     flex-direction: column;

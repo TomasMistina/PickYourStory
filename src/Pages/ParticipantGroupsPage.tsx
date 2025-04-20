@@ -74,13 +74,16 @@ const ParticipantGroupsPage = () => {
   
     return (
       <div className="all__part__container">
+        <div className="mobile__hat__theme">
+          <span className="hat__title">Moje skupiny - Účastník</span>
+        </div>
         <GroupsListed Groups={participantGroups}/>
         <Pagination
           currentPage={pagination.currentPage}
           totalPages={pagination.totalPages}
           onPageChange={handlePageChange}
         />
-        <section>
+        <section className="section__alt">
           {errMsg && <p className="error__message">{errMsg}</p>}
           {successMsg && <p className="success__message">{successMsg}</p>}
           <h1>Pripojenie sa do skupiny</h1>

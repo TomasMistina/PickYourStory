@@ -74,13 +74,16 @@ const MentorGroupsPage = () => {
   
     return (
       <div className="all__part__container">
+        <div className="mobile__hat__theme">
+          <span className="hat__title">Moje skupiny - Mentor</span>
+        </div>
         <GroupsListed Groups={mentoredGroups}/>
         <Pagination
           currentPage={pagination.currentPage}
           totalPages={pagination.totalPages}
           onPageChange={handlePageChange}
         />
-        <section>
+        <section className="section__alt">
           {errMsg && <p className="error__message">{errMsg}</p>}
           {successMsg && <p className="success__message">{successMsg}</p>}
           <h1>Vytvorenie novej skupiny</h1>

@@ -35,6 +35,9 @@ const AllHatThemes = () => {
 
   return (
     <div className="all__part__container">
+      <div className="mobile__hat__theme">
+        <span className="hat__title">Verejné klobúky</span>
+      </div>
       <div className="scroll__container">
         <div className="hattheme_collection">
           {allHatThemes?.map((hatTheme : CompactHatThemePreview) => (

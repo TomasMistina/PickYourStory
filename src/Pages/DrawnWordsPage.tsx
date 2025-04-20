@@ -6,6 +6,7 @@ import { DrawnItem, Item } from "../model";
 
 const DrawnWords = () => {
   const [drawnItems, setDrawnItems] = useState<Item[]>([]);
+  const [originalTitle, setOriginalTitle] = useState<string>("");
   const { id } = useParams();
   useEffect(() => {
     if (id) {
@@ -22,6 +23,8 @@ const DrawnWords = () => {
     try {
       const response = await axios.get(`/drawn-words/get-list/${id}`);
       const drawnWordsData = response.data;
+      setOriginalTitle(drawnWordsData?.originHatTheme?.title);
+      console.log(drawnWordsData);
       const extractedItems: Item[] = drawnWordsData.items.map(
         (item: any) => ({
           id: item._id,
@@ -35,6 +38,9 @@ const DrawnWords = () => {
   };
   return (
     <>
+      <div className="mobile__hat__theme">
+        <span className="hat__title">{"Zoznam vytiahnutý z " + (originalTitle || "neznámeho zdroja")}</span>
+      </div>
       <div>
         <DrawnItemsList
           drawnItems={drawnItems}

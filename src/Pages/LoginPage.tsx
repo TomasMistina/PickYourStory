@@ -36,7 +36,7 @@ const LoginPage = () => {
       } else if (err.response?.status === 400) {
         setErrMsg("Chýba meno alebo heslo");
       } else if (err.response?.status === 401) {
-        setErrMsg("Nepovolené prihlásenie");
+        setErrMsg("Nesprávne meno alebo heslo");
       } else {
         setErrMsg("Nepodarilo sa prihlásiť");
       }
