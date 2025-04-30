@@ -1,4 +1,4 @@
-import { useRef, useState} from "react";
+import { useEffect, useRef, useState} from "react";
 import axios from "./../api/axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
@@ -17,6 +17,10 @@ const LoginPage = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+
+  useEffect(() => {
+      userRef.current?.focus();
+    }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

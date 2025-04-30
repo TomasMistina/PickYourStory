@@ -132,7 +132,7 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
         ?
         <>
           <div className="mobile__hat__theme">
-            <span className="mobile__hat__title">{title} <button onClick={() => deleteHatMutation.mutate()} className="delete__button"><MdDelete/></button></span>
+            <span className="mobile__hat__title">{title} {(currentUserId === hatOwner) && <button onClick={() => deleteHatMutation.mutate()} className="delete__button"><MdDelete/></button>}</span>
             <div className="mobile__action__buttons">
               {(currentUserId === hatOwner) &&
                 <Link
@@ -196,7 +196,7 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
             </Link>
             ) }
 
-            <span className="hat__title">{title} <button onClick={() => deleteHatMutation.mutate()} className="delete__button"><MdDelete/></button></span>
+            <span className="hat__title">{title} {(currentUserId === hatOwner) && <button onClick={() => deleteHatMutation.mutate()} className="delete__button"><MdDelete/></button>}</span>
             
             <Link
             className="action__button"
