@@ -18,14 +18,12 @@ const initialAuthContext: AuthContextType = {
   setCurrentUserId: () => {},
 };
 
-// Create context with initial values
 const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
 type Props = {
   children: ReactNode;
 };
 
-//The children nested in this Context Provider have received the context
 export const AuthProvider = ({ children }: Props) => {
   const [currentUser, setCurrentUser] = useState<string | null>();
   const [currentUserId, setCurrentUserId] = useState<string | null>();

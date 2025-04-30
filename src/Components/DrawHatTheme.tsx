@@ -119,7 +119,7 @@ const DrawHatTheme = ({ title, setTitle, id, lessonId, drawnWordsId, drawnWordsL
   };
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error fetching hat theme.</p>;
+  if (isError) return <p className="error__message">Klobúk, z ktorého ste chceli vyťahovať sa nenašiel, alebo bol vymazaný.</p>;
 
 // *** UI ***
   return (

@@ -4,12 +4,13 @@ import "./../Pages/pages.css";
 import { HatType, Item} from "../model";
 import axios from "./../api/axios";
 import useAuth from "../auth/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShowcaseHat from "./ShowcaseHat";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useIsMobile } from "../mobile/useIsMobile";
 import MobileTabLayout from "./ui/MobileTabLayout";
 import { FaToggleOn, FaToggleOff} from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 type Props = {
   title: string;
@@ -28,6 +29,7 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
   const [successMsg, setSuccessMsg] = useState("");
 
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data: hatThemeData, isLoading, isError} = useQuery({
     queryKey: ["hatTheme", id, currentUserId],
@@ -95,6 +97,28 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
     },
   });
 
+  const deleteHatMutation = useMutation({
+    mutationFn: async () => {
+      const response = await axios.patch(`/hat-theme/delete/${id}`, {
+      });
+      return response.data;
+    },
+    onSuccess: () => {
+      setErrMsg("");
+      queryClient.invalidateQueries({ queryKey: ["hatTheme", id, currentUserId] });
+      navigate("/hat-themes/my-hats", { replace: true });
+    },
+    onError: (err: any) => {
+      console.log("Error data"+ err);
+      if (!err?.response) {
+        setErrMsg("Server bez odozvy");
+      } else {
+        setErrMsg("Nepodarilo sa vymazať klobúk");
+      }
+      setSuccessMsg("");
+    },
+  });
+
   if (isError) {
     return <p className="error__message">Tento klobúk nie je verejný, nemáte k nemu prístup</p>;
   }
@@ -108,7 +132,7 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
         ?
         <>
           <div className="mobile__hat__theme">
-            <span className="mobile__hat__title">{title}</span>
+            <span className="mobile__hat__title">{title} <button onClick={() => deleteHatMutation.mutate()} className="delete__button"><MdDelete/></button></span>
             <div className="mobile__action__buttons">
               {(currentUserId === hatOwner) &&
                 <Link
@@ -172,7 +196,8 @@ const ShowcaseHatTheme = ({ title, setTitle, id }: Props) => {
             </Link>
             ) }
 
-            <span className="hat__title">{title}</span>
+            <span className="hat__title">{title} <button onClick={() => deleteHatMutation.mutate()} className="delete__button"><MdDelete/></button></span>
+            
             <Link
             className="action__button"
             to={`./../draw/${id}`}
