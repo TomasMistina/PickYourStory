@@ -8,6 +8,7 @@ import CompactWordDisplay from "../Components/ui/CompactWordDisplay";
 import { DrawnWordsList } from "../model";
 import { useIsMobile } from "../mobile/useIsMobile";
 
+//Stranka na zobrazenie mentorovanych hodin
 const MentorLessonPage = () => {
     const { currentUserId } = useAuth();
     const { id } = useParams();

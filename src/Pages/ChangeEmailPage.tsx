@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const CHANGE_MAIL_URL = "user/change-email";
 
+//Stranky na zmenu mena emailu, atd, som vytvoril podla stranky na registraciu
 const ChangeEmailPage = () => {
   const userRef = useRef<HTMLInputElement>(null);
   const { currentUserId } = useAuth();

@@ -3,6 +3,7 @@ import "./pages.css";
 import { useParams } from "react-router-dom";
 import ShowcaseHatTheme from "../Components/ShowcaseHatTheme";
 
+//Stranka na zobrazenie klobuku
 const ShowcaseHat = () => {
   const [title, setTitle] = useState<string>("New Hat");
   const { id } = useParams();

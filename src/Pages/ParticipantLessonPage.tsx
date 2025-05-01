@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CompactWordDisplay from "../Components/ui/CompactWordDisplay";
 import { useIsMobile } from "../mobile/useIsMobile";
 
+//Stranka na zobrazenie hodiny kde som ucastnik
 const ParticipantLessonPage = () => {
     const { currentUserId } = useAuth();
     const { id } = useParams();

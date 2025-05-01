@@ -9,7 +9,7 @@ type Props = {
     emailLabel: string,
 }
 
-//Got this email regex from here: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
+//Email regex je z: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
 const EMAIL_REGEX = /^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$/;
 
 const Email = ({email, setEmail, validEmail, setValidEmail, emailLabel}: Props) => {  

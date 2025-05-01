@@ -6,6 +6,7 @@ import Pagination from "../Components/ui/Pagination";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import GroupsListed from "../Components/GroupsListed";
 
+//Stranka na zobrazenie skupin kde som ucastnik
 const ParticipantGroupsPage = () => {
     const { currentUserId } = useAuth();
     const [page, setPage] = useState(1);

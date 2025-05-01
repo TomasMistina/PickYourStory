@@ -13,6 +13,7 @@ import { UserPreview } from "../model";
 import { useIsMobile } from "../mobile/useIsMobile";
 import ParticipantNameDisplay from "../Components/ui/ParticipantNameDisplay";
 
+//Stranka na zobrazenie mentorovanej skupiny
 const MentorGroupPage = () => {
     const { currentUserId } = useAuth();
     const { id } = useParams();

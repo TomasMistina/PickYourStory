@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import DrawHatTheme from "../Components/DrawHatTheme";
 
+//Stranka na vytahovanie papierikov
 const DrawWords = () => {
   const [title, setTitle] = useState<string>("Vybraný klobúk");
   const { lessonId, id} = useParams();

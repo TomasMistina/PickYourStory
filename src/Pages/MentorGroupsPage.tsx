@@ -6,6 +6,7 @@ import Pagination from "../Components/ui/Pagination";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import GroupsListed from "../Components/GroupsListed";
 
+//Stranka na zobrazenie mentorovanych skupin
 const MentorGroupsPage = () => {
     const { currentUserId } = useAuth();
     const [page, setPage] = useState(1);

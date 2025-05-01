@@ -8,6 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import LessonsListed from "../Components/LessonsListed";
 import { useIsMobile } from "../mobile/useIsMobile";
 
+//Stranka na zobrazenie skupiny kde som ucastnik
 const ParticipantGroupPage = () => {
     const { currentUserId } = useAuth();
     const { id } = useParams();

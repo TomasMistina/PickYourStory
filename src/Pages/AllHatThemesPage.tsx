@@ -7,6 +7,7 @@ import useAuth from "../auth/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "../Components/ui/Pagination";
 
+//Stranka na zobrazenie vsetkych verejnych klobukov
 const AllHatThemes = () => {
   const { currentUser } = useAuth();
   const [page, setPage] = useState(1);

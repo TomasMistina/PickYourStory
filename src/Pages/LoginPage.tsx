@@ -3,6 +3,8 @@ import axios from "./../api/axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 
+//Stranka na prihlasenie
+//Spravena tak ako stranka na registraciu
 const LOGIN_URL = "user/login";
 
 const LoginPage = () => {

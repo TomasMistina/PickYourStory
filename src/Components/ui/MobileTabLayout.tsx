@@ -8,7 +8,7 @@ type Props = {
     setSelected: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const CompactHatThemeDisplay = ({ selected, setSelected }: Props) => {
+const MobileTabLayout = ({ selected, setSelected }: Props) => {
     return(
         <div className="mobile__tab__container">
             <div className={(selected===1) ? "mobile__tab__bigger" : "mobile__tab"}> 
@@ -45,6 +45,6 @@ const CompactHatThemeDisplay = ({ selected, setSelected }: Props) => {
     );
 };
 
-export default CompactHatThemeDisplay;
+export default MobileTabLayout;
 
 

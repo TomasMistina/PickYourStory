@@ -11,6 +11,9 @@ const RECOVERY_EMAIL_URL = "user/forgot-password";
 const RECOVERY_CODE_URL = "user/validate-recovery-code";
 const CHANGE_PASS_URL = "user/reset-password";
 
+//Stranka na obnovu hesla
+//Stranky na zmenu mena emailu, atd, som vytvoril podla stranky na registraciu
+
 const ForgotPasswordPage = () => {
   const userRef = useRef<HTMLInputElement>(null);
 

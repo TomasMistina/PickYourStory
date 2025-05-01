@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DrawnItemsList from "../Components/DrawnItemsList";
 import { DrawnItem, Item } from "../model";
 
+//Stranka zobrazujuca jeden vytiahnuty zoznam papierikov
 const DrawnWords = () => {
   const [drawnItems, setDrawnItems] = useState<Item[]>([]);
   const [originalTitle, setOriginalTitle] = useState<string>("");
@@ -12,7 +13,6 @@ const DrawnWords = () => {
     if (id) {
       fetchDataForDrawnItems(id);
     } else {
-      // Create default hat theme
       createDefaultDrawnItems();
     }
   }, [id]);

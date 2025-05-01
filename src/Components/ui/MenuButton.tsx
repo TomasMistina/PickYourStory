@@ -17,7 +17,7 @@ const MenuButton = ({elementId, isModalOpen, setIsModalOpen} : Props) => {
         setIsModalOpen(!isModalOpen);
     }
     
-    // Close modal when clicking outside the content
+    // zatvara modal pri kliknuti mimo
     window.onclick = function(event) {
     const modal = document.getElementById(elementId);
     if (modal && (event.target === modal)) {

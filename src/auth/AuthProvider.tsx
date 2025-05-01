@@ -1,5 +1,7 @@
 import { ReactNode, createContext, useState } from "react";
 
+//pri vytvarani tejto stranky som mal viacero inspiracii, jedna y najvacsich bola asi toto video: https://www.youtube.com/watch?v=oUZjO00NkhY
+
 export type AuthContextType = {
   currentUser: string | null | undefined;
   setCurrentUser: React.Dispatch<

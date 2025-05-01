@@ -7,18 +7,18 @@ import useAuth from "../auth/useAuth";
 import Passwords from "../Components/Passwords";
 import Email from "../Components/Email";
 
+//Tuto stranku a Login som vytvoril s velkou inspiraciou podla videa: https://www.youtube.com/watch?v=brcHK3P6ChQ
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-//Got this email regex from here: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
+//Email regex je z: https://stackoverflow.com/questions/60282362/regex-pattern-for-email
 const EMAIL_REGEX = /^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$/;
 const REGISTER_URL = "user/register";
 
 const RegisterPage = () => {
   const userRef = useRef<HTMLInputElement>(null);
 
-  //User context setter here, this context is used in the whole application onwards
   const { setCurrentUser, setCurrentUserId } = useAuth();
 
-  //This ensures that after login/registration I get to desired page
+  //Po login/registration ma to presunie na spravnu stranku
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";

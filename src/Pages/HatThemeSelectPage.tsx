@@ -10,6 +10,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CompactHatThemeDisplay from "../Components/ui/CompactHatThemeDisplay";
 import { useIsMobile } from "../mobile/useIsMobile";
 
+//Stranka na vyber klobuku na hodinu
 const HatThemeSelectPage = () => {
   const [page, setPage] = useState(1);
   const { currentUser } = useAuth();

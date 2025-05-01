@@ -7,6 +7,7 @@ import DrawnCard from "../Components/DrawnCard";
 import Pagination from "../Components/ui/Pagination";
 import { useQuery } from "@tanstack/react-query";
 
+//Stranka zobrazujuca moje vytiahnute zoznamy papierikov
 const MyDrawnWords = () => {
   const { currentUser, currentUserId } = useAuth();
   const [page, setPage] = useState(1);

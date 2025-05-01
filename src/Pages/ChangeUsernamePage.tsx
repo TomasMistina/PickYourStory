@@ -7,6 +7,8 @@ import { CiCircleInfo } from "react-icons/ci";
 const CHANGE_USER_URL = "user/change-username";
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 
+//Stranka na zmenu mena
+//Stranky na zmenu mena emailu, hesla, atd, som vytvoril podla stranky na registraciu
 const ChangeUsernamePage = () => {
   const userRef = useRef<HTMLInputElement>(null);
   const { currentUser, currentUserId, setCurrentUser} = useAuth();
