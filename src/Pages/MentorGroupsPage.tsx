@@ -48,10 +48,6 @@ const MentorGroupsPage = () => {
       onError: (err: any) => {
         if (!err?.response) {
           setErrMsg("Server bez odozvy");
-        } else if (err.response?.status === 400) {
-          setErrMsg("Chýba meno alebo heslo");
-        } else if (err.response?.status === 401) {
-          setErrMsg("Nepovolené prihlásenie");
         } else {
           setErrMsg("Nepodarilo sa vytvoriť skupinu");
         }

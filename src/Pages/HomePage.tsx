@@ -4,7 +4,8 @@ import { useIsMobile } from "../mobile/useIsMobile";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
-//väčšinu tejto stránky a jej štýlov som podľa svojich preferencií vygeneroval v chatgpt a potom upravil
+//Domovska stranka
+//Vacsinu tejto stranky a jej stylov som podla svojich preferencii vygeneroval v chatgpt a potom upravil
 const HomePage = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const isMobile = useIsMobile();

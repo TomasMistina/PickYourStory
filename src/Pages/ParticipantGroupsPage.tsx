@@ -49,11 +49,11 @@ const ParticipantGroupsPage = () => {
         if (!err?.response) {
           setErrMsg("Server bez odozvy");
         } else if (err.response?.status === 400) {
-          setErrMsg("Chýba meno alebo heslo");
-        } else if (err.response?.status === 401) {
-          setErrMsg("Nepovolené prihlásenie");
+          setErrMsg("Do skupiny už nie je možné pripojiť sa");
+        } else if (err.response?.status === 404) {
+          setErrMsg("Nenašla sa daná skupina");
         } else {
-          setErrMsg("Nepodarilo sa vytvoriť skupinu");
+          setErrMsg("Nepodarilo sa pripojiť do skupiny");
         }
         setSuccessMsg("");
       },

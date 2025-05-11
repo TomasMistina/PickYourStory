@@ -6,7 +6,8 @@ import Passwords from "../Components/Passwords";
 
 const CHANGE_PASS_URL = "user/change-password";
 
-//Stranky na zmenu mena emailu, atd, som vytvoril podla stranky na registraciu
+//Stranka na zmenu hesla
+//Stranky na zmenu mena emailu, hesla, atd, som vytvoril podla stranky na registraciu
 const ChangePasswordPage = () => {
   const userRef = useRef<HTMLInputElement>(null);
   const { currentUserId } = useAuth();
